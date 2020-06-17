@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:drawable/editbox_dropdown_light_frame"
+    android:backgroundTint="#d239043b"
+    android:backgroundTintMode="src_in"
+    android:orientation="vertical"
+    android:visibility="visible"
+    tools:context="pl.maciejnalewajka.aplikacja5.Konwerter">
+
+
+    <Button
+        android:id="@+id/idkategoria"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_weight="3"
+        android:background="@android:drawable/alert_dark_frame"
+        android:backgroundTint="#b2c1154e"
+        android:defaultFocusHighlightEnabled="true"
+        android:fontFamily="cursive"
+        android:onClick="kategoria"
+        android:scrollHorizontally="true"
+        android:scrollbarAlwaysDrawHorizontalTrack="true"
+        android:shadowColor="@color/colorAccent"
+        android:text="@string/kategoria"
+        android:textColor="#94ed9d"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:typeface="serif" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:layout_weight="3"
+        android:background="#e4bfa483">
+
+        <Button
+            android:id="@+id/idwybierz1"
+            style="@android:style/Widget.DeviceDefault.Button.Borderless"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@android:drawable/dialog_frame"
+            android:backgroundTint="#cbe421ba"
+            android:backgroundTintMode="src_atop"
+            android:fontFamily="cursive"
+            android:onClick="wybierz1"
+            android:phoneNumber="false"
+            android:selectAllOnFocus="true"
+            android:shadowColor="@android:color/black"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:shadowRadius="15"
+            android:soundEffectsEnabled="false"
+            android:text="@string/wybierz"
+            android:textColor="#930606"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:typeface="normal" />
+
+        <EditText
+            android:id="@+id/edit1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:backgroundTint="@color/colorPrimary"
+            android:backgroundTintMode="src_atop"
+            android:digits="0123456789.-"
+            android:hint="Podaj liczbę"
+            android:inputType="number"
+            android:textColor="#FF482107"
+            android:textColorHint="#bdbf560f" />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:drawable/alert_dark_frame"
+            android:backgroundTint="#d3f41515"
+            android:backgroundTintMode="src_atop"
+            android:onClick="wklej"
+            app:srcCompat="?android:attr/actionModePasteDrawable" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:layout_weight="3"
+        android:background="#e4bfa483">
+
+        <Button
+            android:id="@+id/idwybierz2"
+            style="@android:style/Widget.DeviceDefault.Button.Borderless"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@android:drawable/dialog_frame"
+            android:backgroundTint="#cbe421ba"
+            android:backgroundTintMode="src_atop"
+            android:fontFamily="cursive"
+            android:onClick="wybierz2"
+            android:phoneNumber="false"
+            android:selectAllOnFocus="true"
+            android:shadowColor="@android:color/black"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:shadowRadius="15"
+            android:soundEffectsEnabled="false"
+            android:text="Wybierz"
+            android:textColor="#930606"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:typeface="normal" />
+
+        <EditText
+            android:id="@+id/edit2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:backgroundTintMode="src_atop"
+            android:digits="0123456789.-"
+            android:inputType="number"
+            android:singleLine="false"
+            android:textColor="#482107"
+            android:textColorHint="#deaaaa" />
+
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:drawable/alert_dark_frame"
+            android:backgroundTint="#d3f41515"
+            android:backgroundTintMode="src_atop"
+            android:onClick="kopia"
+            app:srcCompat="?android:attr/actionModeCopyDrawable" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/idkonwertuj"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:layout_weight="3"
+        android:background="@android:drawable/alert_dark_frame"
+        android:backgroundTint="#b2c1154e"
+        android:fontFamily="cursive"
+        android:onClick="konwertuje"
+        android:text="Konwertuj"
+        android:textColor="#94ed9d"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:typeface="serif" />
+
+</LinearLayout>

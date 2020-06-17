@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#b83e4d4a</color>
+    <color name="colorPrimaryDark">#b83e4d4a</color>
+    <color name="colorAccent">#b83e4d4a</color>
+    <color name="Przezroczysty">#003ba1ca</color>
+    <color name="Niebieski">#ea58a7cf</color>
+    <color name="moj1">#ea58a7cf</color>
+    <color name="moj2">#ea58a7cf</color>
+    <color name="moj3">#ea58a7cf</color>
+    <color name="abc_primary_text_material_dark">#f43d1f06</color>
+</resources>
