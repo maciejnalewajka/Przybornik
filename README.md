@@ -1,7 +1,5 @@
 # Przybornik
 
-# With 
-
 ### JSON, API
 
 ![Alt text](https://github.com/maciejnalewajka/Przybornik/blob/master/img/img1.jpg)
