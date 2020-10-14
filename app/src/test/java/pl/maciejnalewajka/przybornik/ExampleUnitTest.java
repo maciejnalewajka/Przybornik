@@ -1,4 +1,4 @@
-package pl.maciejnalewajka.aplikacja5;
+package pl.maciejnalewajka.przybornik;
 
 import org.junit.Test;
 

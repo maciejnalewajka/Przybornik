@@ -9,7 +9,7 @@
     android:backgroundTintMode="src_in"
     android:orientation="vertical"
     android:visibility="visible"
-    tools:context="pl.maciejnalewajka.aplikacja5.Konwerter">
+    tools:context="pl.maciejnalewajka.przybornik.Konwerter">
 
 
     <Button
@@ -52,10 +52,6 @@
             android:onClick="wybierz1"
             android:phoneNumber="false"
             android:selectAllOnFocus="true"
-            android:shadowColor="@android:color/black"
-            android:shadowDx="5"
-            android:shadowDy="5"
-            android:shadowRadius="15"
             android:soundEffectsEnabled="false"
             android:text="@string/wybierz"
             android:textColor="#930606"
@@ -107,10 +103,6 @@
             android:onClick="wybierz2"
             android:phoneNumber="false"
             android:selectAllOnFocus="true"
-            android:shadowColor="@android:color/black"
-            android:shadowDx="5"
-            android:shadowDy="5"
-            android:shadowRadius="15"
             android:soundEffectsEnabled="false"
             android:text="Wybierz"
             android:textColor="#930606"

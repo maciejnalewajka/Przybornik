@@ -1,4 +1,4 @@
-package pl.maciejnalewajka.aplikacja5;
+package pl.maciejnalewajka.przybornik;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import java.util.Objects;
@@ -29,6 +30,8 @@ public class Konwerter extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_konwerter);
         edit2 = (EditText) findViewById(R.id.edit1);
         edit = (EditText) findViewById(R.id.edit2);
@@ -37,11 +40,6 @@ public class Konwerter extends AppCompatActivity {
         button3 = (Button) findViewById(R.id.idwybierz2);
         button4 = (Button) findViewById(R.id.idkonwertuj);}
 
-    @Override
-    protected void onPause() {super.onPause();}
-
-    @Override
-    protected void onResume(){super.onResume();}
 
 
 

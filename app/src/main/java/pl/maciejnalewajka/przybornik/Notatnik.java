@@ -1,4 +1,4 @@
-package pl.maciejnalewajka.aplikacja5;
+package pl.maciejnalewajka.przybornik;
 
 import android.Manifest;
 import android.content.ClipData;
@@ -13,19 +13,16 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.util.Random;
 import java.util.ArrayList;
@@ -46,19 +43,21 @@ public class Notatnik extends AppCompatActivity implements AdapterView.OnItemCli
     private FileReader fr = null;;
 
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode)
-        {
-            case MEMORY_ACCESS:
-                if(grantResults.length>0&&grantResults[0]== PackageManager.PERMISSION_GRANTED){}
-                else
-                {Toast.makeText(getApplicationContext(), "Zgoda wymagana", Toast.LENGTH_LONG ).show();}
-        }}  // Uprawnienia
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        switch (requestCode)
+//        {
+//            case MEMORY_ACCESS:
+//                if(grantResults.length>0&&grantResults[0]== PackageManager.PERMISSION_GRANTED){}
+//                else
+//                {Toast.makeText(getApplicationContext(), "Zgoda wymagana", Toast.LENGTH_LONG ).show();}
+//        }}  // Uprawnienia
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_notatnik);
         if(ActivityCompat.shouldShowRequestPermissionRationale(Notatnik.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)){}
         else{ActivityCompat.requestPermissions(Notatnik.this, new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE}, MEMORY_ACCESS);}

@@ -1,4 +1,4 @@
-package pl.maciejnalewajka.aplikacja5;
+package pl.maciejnalewajka.przybornik;
 
 import java.math.BigDecimal;
 import java.util.ArrayDeque;

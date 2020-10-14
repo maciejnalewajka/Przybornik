@@ -8,7 +8,7 @@
     android:backgroundTint="#eaa10723"
     android:orientation="vertical"
     android:padding="3dp"
-    tools:context="pl.maciejnalewajka.aplikacja5.Kalkulator">
+    tools:context="pl.maciejnalewajka.przybornik.Kalkulator">
 
     <TextView
         android:id="@+id/resCalc"

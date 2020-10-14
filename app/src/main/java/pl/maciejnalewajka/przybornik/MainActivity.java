@@ -1,18 +1,20 @@
-package pl.maciejnalewajka.aplikacja5;
+package pl.maciejnalewajka.przybornik;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
     }
 
@@ -26,19 +28,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent2);
     }
 
-    public void button3(View view) {
-        Intent intent3 = new Intent(this, Przypominajka.class);
-        startActivity(intent3);
-    }
-
     public void button4(View view) {
         Intent intent4 = new Intent(this, Konwerter.class);
         startActivity(intent4);
-    }
-
-    public void button5(View view) {
-        Intent intent5 = new Intent(this, Plan.class);
-        startActivity(intent5);
     }
 
     public void iid(View view) {

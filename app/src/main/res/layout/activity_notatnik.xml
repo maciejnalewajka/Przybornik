@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:baselineAligned="false"
     android:orientation="vertical"
-    tools:context="pl.maciejnalewajka.aplikacja5.Notatnik">
+    tools:context="pl.maciejnalewajka.przybornik.Notatnik">
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package pl.maciejnalewajka.aplikacja5;
+package pl.maciejnalewajka.przybornik;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

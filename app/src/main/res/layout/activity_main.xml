@@ -7,7 +7,7 @@
 	android:layout_height="match_parent"
 	android:background="#ebb8b8"
 	android:orientation="vertical"
-	tools:context="pl.maciejnalewajka.aplikacja5.MainActivity">
+	tools:context="pl.maciejnalewajka.przybornik.MainActivity">
 
 	<RelativeLayout
 		android:layout_width="match_parent"
@@ -83,23 +83,6 @@
 		android:orientation="horizontal">
 
 		<Button
-			android:id="@+id/button3"
-			android:layout_width="0dp"
-			android:layout_height="match_parent"
-			android:layout_margin="12dp"
-			android:layout_weight="1"
-			android:background="@android:drawable/dialog_frame"
-			android:backgroundTint="#9aa1af61"
-			android:backgroundTintMode="screen"
-			android:fontFamily="serif-monospace"
-			android:gravity="center"
-			android:onClick="button3"
-			android:text="ALERT"
-			android:textColor="#301305"
-			android:textSize="18sp"
-			android:textStyle="bold" />
-
-		<Button
 			android:id="@+id/button4"
 			android:layout_width="0dp"
 			android:layout_height="match_parent"
@@ -118,23 +101,5 @@
 
 	</LinearLayout>
 
-
-	<Button
-		android:id="@+id/button5"
-		android:layout_width="match_parent"
-		android:layout_height="0dp"
-		android:layout_below="@+id/linear_2"
-		android:layout_margin="12dp"
-		android:layout_weight="1"
-		android:background="@android:drawable/dialog_frame"
-		android:backgroundTint="#9a61af9c"
-		android:backgroundTintMode="screen"
-		android:fontFamily="serif-monospace"
-		android:gravity="center"
-		android:onClick="button5"
-		android:text="PLAN ZAJĘć"
-		android:textColor="#301305"
-		android:textSize="18sp"
-		android:textStyle="bold" />
 
 </LinearLayout>
