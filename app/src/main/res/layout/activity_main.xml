@@ -9,27 +9,39 @@
 	android:orientation="vertical"
 	tools:context="pl.maciejnalewajka.przybornik.MainActivity">
 
-	<RelativeLayout
+	<android.support.constraint.ConstraintLayout
+		android:id="@+id/relativeLayout"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content">
 
-		<View
-			android:layout_width="match_parent"
-			android:layout_height="60dp"
-			android:background="@android:color/black"
-			android:backgroundTint="#ebb8b8"
-			android:backgroundTintMode="src_over" />
+		<TextView
+			android:id="@+id/textView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="8dp"
+			android:fontFamily="monospace"
+			android:text="Przybornik"
+			android:textAlignment="center"
+			android:textColor="#7C692E"
+			android:textSize="30sp"
+			android:textStyle="bold"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
 
 		<ImageView
 			android:id="@+id/imageView1"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_alignParentEnd="true"
-			android:layout_centerVertical="true"
 			android:onClick="iid"
 			android:paddingEnd="15dp"
-			android:src="@android:drawable/ic_dialog_info" />
-	</RelativeLayout>
+			android:src="@android:drawable/ic_dialog_info"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
+
+	</android.support.constraint.ConstraintLayout>
 
 
 	<LinearLayout
@@ -96,7 +108,7 @@
 			android:onClick="button4"
 			android:text="KONWERTER"
 			android:textColor="#301305"
-			android:textSize="18sp"
+			android:textSize="30sp"
 			android:textStyle="bold" />
 
 	</LinearLayout>

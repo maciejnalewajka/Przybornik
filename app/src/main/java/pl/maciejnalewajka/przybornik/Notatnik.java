@@ -42,16 +42,16 @@ public class Notatnik extends AppCompatActivity implements AdapterView.OnItemCli
     private String text;
     private FileReader fr = null;;
 
-
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        switch (requestCode)
-//        {
-//            case MEMORY_ACCESS:
-//                if(grantResults.length>0&&grantResults[0]== PackageManager.PERMISSION_GRANTED){}
-//                else
-//                {Toast.makeText(getApplicationContext(), "Zgoda wymagana", Toast.LENGTH_LONG ).show();}
-//        }}  // Uprawnienia
+    // Uprawnienia
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode)
+        {
+            case MEMORY_ACCESS:
+                if(grantResults.length>0&&grantResults[0]== PackageManager.PERMISSION_GRANTED){}
+                else
+                {Toast.makeText(getApplicationContext(), "Zgoda wymagana", Toast.LENGTH_LONG ).show();}
+        }}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

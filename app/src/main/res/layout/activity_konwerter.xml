@@ -51,13 +51,14 @@
             android:fontFamily="cursive"
             android:onClick="wybierz1"
             android:phoneNumber="false"
-            android:selectAllOnFocus="true"
+            android:selectAllOnFocus="false"
             android:soundEffectsEnabled="false"
             android:text="@string/wybierz"
-            android:textColor="#930606"
+            android:textAlignment="center"
+            android:textColor="#ABFFAF"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:typeface="normal" />
+            android:typeface="sans" />
 
         <EditText
             android:id="@+id/edit1"
@@ -102,13 +103,14 @@
             android:fontFamily="cursive"
             android:onClick="wybierz2"
             android:phoneNumber="false"
-            android:selectAllOnFocus="true"
+            android:selectAllOnFocus="false"
             android:soundEffectsEnabled="false"
             android:text="Wybierz"
-            android:textColor="#930606"
+            android:textAlignment="center"
+            android:textColor="#ABFFAF"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:typeface="normal" />
+            android:typeface="sans" />
 
         <EditText
             android:id="@+id/edit2"

@@ -43,24 +43,24 @@ public class Konwerter extends AppCompatActivity {
 
 
 
-
-    public void wklej(View view) {
-
-        ClipboardManager kop = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-        ClipData kop2 = kop.getPrimaryClip();
-        ClipData.Item item = kop2.getItemAt(0);
-        String tekst = item.getText().toString();
+    // Przycisk wklej
+    private void wklej() {
+        ClipboardManager copy = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        ClipData copy2 = copy != null ? copy.getPrimaryClip() : null;
+        ClipData.Item item = copy2 != null ? copy2.getItemAt(0) : null;
+        String tekst = item != null ? item.getText().toString() : null;
         edit2.setText(tekst);
-    }           // Przycisk wklej
+    }
 
-    public void kopia(View view) {
-
+    // Przycisk kopiuj
+    private void kopia() {
         ClipboardManager kop = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
         ClipData kop2 = ClipData.newPlainText("Kopia", edit.getText().toString());
-        kop.setPrimaryClip(kop2);
-    }           // Przycisk kopiuj
+        Objects.requireNonNull(kop).setPrimaryClip(kop2);
+    }
 
-    public void kategoria(View view) {                              //Przycisk kategoria
+    // Przycisk kategoria
+    public void kategoria(View view) {
         final String[] kategorie = {"Temperatura", "Prędkość", "Długość", "Powierzchnia", "Waluta", "Objętość", "Czas", "Masa"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Kategorie");

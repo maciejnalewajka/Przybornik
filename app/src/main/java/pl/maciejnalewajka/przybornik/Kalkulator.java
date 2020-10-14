@@ -1,5 +1,8 @@
 package pl.maciejnalewajka.przybornik;
-
+/*
+Kalkulator.java, PostFixCalculator.java, PostFixConverter.java
+created by Oskar Kufel
+*/
 import android.graphics.Color;
 import android.os.Bundle;
 
