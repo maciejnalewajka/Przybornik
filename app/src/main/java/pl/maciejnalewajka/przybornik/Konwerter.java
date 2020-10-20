@@ -46,7 +46,7 @@ public class Konwerter extends AppCompatActivity {
 
 
     // Przycisk wklej
-    private void wklej() {
+    public void wklej(View view) {
         ClipboardManager copy = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
         ClipData copy2 = copy != null ? copy.getPrimaryClip() : null;
         ClipData.Item item = copy2 != null ? copy2.getItemAt(0) : null;
@@ -55,7 +55,7 @@ public class Konwerter extends AppCompatActivity {
     }
 
     // Przycisk kopiuj
-    private void kopia() {
+    public void kopia(View view) {
         ClipboardManager kop = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
         ClipData kop2 = ClipData.newPlainText("Kopia", edit.getText().toString());
         Objects.requireNonNull(kop).setPrimaryClip(kop2);
@@ -334,9 +334,6 @@ public class Konwerter extends AppCompatActivity {
             edit.setText(String.valueOf(wynik));}
             catch (IllegalArgumentException e){edit.setText(String.valueOf("Zła wartość!"));}
     }       // Przycisk konwertuj
-
-
-
 
     public void ktemperatura(View view) {
         switch (text2) {

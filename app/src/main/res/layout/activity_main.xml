@@ -9,7 +9,7 @@
 	android:orientation="vertical"
 	tools:context="pl.maciejnalewajka.przybornik.MainActivity">
 
-	<androidx.constraintlayout.ConstraintLayout
+	<androidx.constraintlayout.widget.ConstraintLayout
 		android:id="@+id/relativeLayout"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content">
@@ -41,7 +41,7 @@
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintTop_toTopOf="parent" />
 
-	</androidx.constraintlayout.ConstraintLayout>
+	</androidx.constraintlayout.widget.ConstraintLayout>
 
 
 	<LinearLayout
