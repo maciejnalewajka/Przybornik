@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="pl.maciejnalewajka.przybornik">
+    package="com.nalewajka.przybornik">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/icon"
         android:label="Przybornik"
         android:roundIcon="@mipmap/icon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name="pl.maciejnalewajka.przybornik.MainActivity">
+        <activity android:name="com.nalewajka.przybornik.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="pl.maciejnalewajka.przybornik.Kalkulator"
+        <activity android:name="com.nalewajka.przybornik.Kalkulator"
             android:label=" " />
-        <activity android:name="pl.maciejnalewajka.przybornik.Notatnik"
+        <activity android:name="com.nalewajka.przybornik.Notatnik"
             android:label=" "/>
-        <activity android:name="pl.maciejnalewajka.przybornik.Konwerter"
+        <activity android:name="com.nalewajka.przybornik.Konwerter"
             android:label=" "/>
     </application>
 

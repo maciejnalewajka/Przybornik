@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 29
     defaultConfig {
-        applicationId "pl.maciejnalewajka.przybornik"
+        applicationId "com.nalewajka.przybornik"
         minSdkVersion 19
         targetSdkVersion 29
         versionCode 1

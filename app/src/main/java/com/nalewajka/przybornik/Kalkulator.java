@@ -1,4 +1,4 @@
-package pl.maciejnalewajka.przybornik;
+package com.nalewajka.przybornik;
 /*
 Kalkulator.java, PostFixCalculator.java, PostFixConverter.java
 created by Oskar Kufel
@@ -50,17 +50,17 @@ public class Kalkulator extends AppCompatActivity {
 
     public void resultOnScreen(View view) {
         if(sb.length()>0) try {
-            PostFixConverter pc = new PostFixConverter(sb.toString());
-            PostFixCalculator calc = new PostFixCalculator(pc.getPostfixAsList());
+            PostFixKonwerter pc = new PostFixKonwerter(sb.toString());
+            PostFixKalkulator calc = new PostFixKalkulator(pc.getPostfixAsList());
             notatko.setText(calc.result().toString());
             displayHistory(calc.result().toString());
             sb.delete(0, sb.length());
             sb.append(calc.result());}
-            catch (IllegalStateException e) {
+        catch (IllegalStateException e) {
             notatko.setText("zle dane");}
-            catch (NumberFormatException l) {
+        catch (NumberFormatException l) {
             notatko.setText("zle dane");}
-            catch (NoSuchElementException o) {notatko.setText("zle dane");}
+        catch (NoSuchElementException o) {notatko.setText("zle dane");}
         else notatko.setText("");
 
 

@@ -1,6 +1,11 @@
 <resources>
-    <string name="app_name">Aplikacja5</string>
-    <string name="zapisz">Zapisz</string>
-    <string name="wybierz">Wybierz</string>
-    <string name="kategoria">Kategoria</string>
+    <string name="app_name">przybornik</string>
+    <string name="zapisz">zapisz</string>
+    <string name="kategoria">kategoria</string>
+    <string name="wybierz">wybierz</string>
+    <string name="zla_wartosc">Zła wartość!</string>
+    <string name="image">image</string>
+    <string name="kalkulator">kalkulator</string>
+    <string name="konwerter">konwerter</string>
+    <string name="notatnik">notatnik</string>
 </resources>
