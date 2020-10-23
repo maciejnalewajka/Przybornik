@@ -1,120 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/constraintLayout"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:background="#ebb8b8"
-	android:orientation="vertical"
 	tools:context="com.nalewajka.przybornik.MainActivity">
 
-	<androidx.constraintlayout.widget.ConstraintLayout
-		android:id="@+id/relativeLayout"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content">
-
-		<TextView
-			android:id="@+id/textView"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="8dp"
-			android:layout_marginBottom="8dp"
-			android:fontFamily="monospace"
-			android:text="@string/app_name"
-			android:textAlignment="center"
-			android:textColor="#7C692E"
-			android:textSize="30sp"
-			android:textStyle="bold"
-			app:layout_constraintBottom_toBottomOf="parent"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toTopOf="parent" />
-
-		<ImageView
-			android:id="@+id/imageView1"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="8dp"
-			android:layout_marginEnd="8dp"
-			android:onClick="iid"
-			android:src="@android:drawable/ic_dialog_info"
-			app:layout_constraintBottom_toBottomOf="parent"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintTop_toTopOf="parent"
-			android:contentDescription="@string/image" />
-
-	</androidx.constraintlayout.widget.ConstraintLayout>
-
-
-	<LinearLayout
-		android:id="@+id/linear_1"
-		android:layout_width="match_parent"
+	<Button
+		android:id="@+id/button1"
+		android:layout_width="0dp"
 		android:layout_height="0dp"
-		android:layout_weight="2">
+		android:layout_marginStart="8dp"
+		android:layout_marginTop="16dp"
+		android:layout_marginEnd="4dp"
+		android:background="#3D44B1"
+		android:fontFamily="serif-monospace"
+		android:gravity="center"
+		android:text="@string/kalkulator"
+		android:textAllCaps="true"
+		android:textColor="#301305"
+		android:textSize="18sp"
+		android:textStyle="bold"
+		app:layout_constraintBottom_toTopOf="@+id/button3"
+		app:layout_constraintEnd_toStartOf="@+id/button2"
+		app:layout_constraintHorizontal_bias="0.5"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-		<Button
-			android:id="@+id/button1"
-			android:layout_width="0dp"
-			android:layout_height="match_parent"
-			android:layout_margin="8dp"
-			android:layout_weight="1"
-			android:background="@android:drawable/dialog_frame"
-			android:backgroundTint="#9baf6165"
-			android:backgroundTintMode="screen"
-			android:fontFamily="serif-monospace"
-			android:gravity="center"
-			android:onClick="button1"
-			android:text="@string/kalkulator"
-			android:textColor="#301305"
-			android:textSize="18sp"
-			android:textStyle="bold" />
+	<TextView
+		android:id="@+id/textView"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="8dp"
+		android:layout_marginTop="8dp"
+		android:layout_marginEnd="8dp"
+		android:fontFamily="monospace"
+		android:text="@string/app_name"
+		android:textAlignment="center"
+		android:textAllCaps="true"
+		android:textColor="#6C6758"
+		android:textSize="30sp"
+		android:textStyle="bold"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent" />
 
-		<Button
-			android:id="@+id/button2"
-			android:layout_width="0dp"
-			android:layout_height="match_parent"
-			android:layout_margin="8dp"
-			android:layout_weight="1"
-			android:background="@android:drawable/dialog_frame"
-			android:backgroundTint="#9a6192af"
-			android:backgroundTintMode="screen"
-			android:fontFamily="serif-monospace"
-			android:gravity="center"
-			android:onClick="button2"
-			android:text="@string/notatnik"
-			android:textColor="#301305"
-			android:textSize="18sp"
-			android:textStyle="bold" />
-
-	</LinearLayout>
-
-	<LinearLayout
-		android:id="@+id/linear_2"
-		android:layout_width="match_parent"
+	<Button
+		android:id="@+id/button3"
+		android:layout_width="0dp"
 		android:layout_height="0dp"
-		android:layout_below="@id/linear_1"
-		android:layout_weight="2"
-		android:orientation="horizontal">
+		android:layout_marginStart="8dp"
+		android:layout_marginTop="16dp"
+		android:layout_marginEnd="8dp"
+		android:layout_marginBottom="16dp"
+		android:background="@android:color/holo_red_light"
+		android:fontFamily="serif-monospace"
+		android:gravity="center"
+		android:text="@string/konwerter"
+		android:textAllCaps="true"
+		android:textColor="#301305"
+		android:textSize="30sp"
+		android:textStyle="bold"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.5"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/button1" />
 
-		<Button
-			android:id="@+id/button4"
-			android:layout_width="0dp"
-			android:layout_height="match_parent"
-			android:layout_margin="8dp"
-			android:layout_weight="1"
-			android:background="@android:drawable/dialog_frame"
-			android:backgroundTint="#9aab61af"
-			android:backgroundTintMode="screen"
-			android:fontFamily="serif-monospace"
-			android:gravity="center"
-			android:onClick="button4"
-			android:text="@string/konwerter"
-			android:textColor="#301305"
-			android:textSize="30sp"
-			android:textStyle="bold" />
+	<ImageView
+		android:id="@+id/info"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="8dp"
+		android:layout_marginEnd="8dp"
+		android:contentDescription="@string/image"
+		android:src="@android:drawable/ic_dialog_info"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintTop_toTopOf="parent" />
 
-	</LinearLayout>
+	<Button
+		android:id="@+id/button2"
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		android:layout_marginStart="4dp"
+		android:layout_marginEnd="8dp"
+		android:background="#449731"
+		android:fontFamily="serif-monospace"
+		android:gravity="center"
+		android:text="@string/notatnik"
+		android:textAllCaps="true"
+		android:textColor="#301305"
+		android:textSize="18sp"
+		android:textStyle="bold"
+		app:layout_constraintBottom_toBottomOf="@+id/button1"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.5"
+		app:layout_constraintStart_toEndOf="@+id/button1"
+		app:layout_constraintTop_toTopOf="@+id/button1" />
 
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

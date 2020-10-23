@@ -1,156 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:drawable/editbox_dropdown_light_frame"
-    android:backgroundTint="#d239043b"
-    android:backgroundTintMode="src_in"
-    android:orientation="vertical"
+    android:background="@color/backgroundKonwerter"
     android:visibility="visible"
-    tools:context="pl.maciejnalewajka.przybornik.Konwerter">
+    tools:context="com.nalewajka.przybornik.Konwerter">
 
 
     <Button
-        android:id="@+id/idkategoria"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_weight="3"
-        android:background="@android:drawable/alert_dark_frame"
-        android:backgroundTint="#b2c1154e"
-        android:defaultFocusHighlightEnabled="true"
-        android:fontFamily="cursive"
-        android:onClick="kategoria"
-        android:scrollHorizontally="true"
+        android:id="@+id/buttonKategoria"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/backgroundKonwerterKategoria"
         android:scrollbarAlwaysDrawHorizontalTrack="true"
+        android:scrollHorizontally="true"
         android:shadowColor="@color/colorAccent"
         android:text="@string/kategoria"
         android:textColor="#94ed9d"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:typeface="serif" />
+        android:typeface="serif"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="10dp"
-        android:layout_weight="3"
-        android:background="#e4bfa483">
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#e4bfa483"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonKategoria">
 
         <Button
-            android:id="@+id/idwybierz1"
+            android:id="@+id/buttonWybierz1"
             style="@android:style/Widget.DeviceDefault.Button.Borderless"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:background="@android:drawable/dialog_frame"
-            android:backgroundTint="#cbe421ba"
-            android:backgroundTintMode="src_atop"
-            android:fontFamily="cursive"
-            android:onClick="wybierz1"
-            android:phoneNumber="false"
+            android:layout_height="0dp"
+            android:background="@color/backgroundKonwerterWybierz"
             android:selectAllOnFocus="false"
             android:soundEffectsEnabled="false"
             android:text="@string/wybierz"
             android:textAlignment="center"
-            android:textColor="#ABFFAF"
+            android:textColor="@color/backgroundKonwerterPaste"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:typeface="sans" />
+            android:typeface="sans"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/editText"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/edit1"
+            android:id="@+id/editText"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:backgroundTint="@color/colorPrimary"
-            android:backgroundTintMode="src_atop"
+            android:layout_height="0dp"
+            android:background="@color/backgroundKonwerterLiczba"
             android:digits="0123456789.-"
-            android:hint="Podaj liczbę"
+            android:gravity="center"
+            android:hint="@string/podaj_liczbe"
+            android:importantForAutofill="no"
             android:inputType="number"
-            android:textColor="#FF482107"
-            android:textColorHint="#bdbf560f" />
+            android:textColor="@color/colorPrimaryDark"
+            android:textColorHint="#BD555351"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/buttonPaste"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonWybierz1"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:drawable/alert_dark_frame"
-            android:backgroundTint="#d3f41515"
-            android:backgroundTintMode="src_atop"
-            android:onClick="wklej"
+            android:id="@+id/buttonPaste"
+            android:layout_width="100dp"
+            android:layout_height="0dp"
+            android:background="@color/backgroundKonwerterPaste"
+            android:contentDescription="@string/image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/editText"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="?android:attr/actionModePasteDrawable" />
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="10dp"
-        android:layout_weight="3"
-        android:background="#e4bfa483">
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#e4bfa483"
+        app:layout_constraintBottom_toTopOf="@+id/buttonKonwertuj"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
 
         <Button
-            android:id="@+id/idwybierz2"
+            android:id="@+id/buttonWybierz2"
             style="@android:style/Widget.DeviceDefault.Button.Borderless"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:background="@android:drawable/dialog_frame"
-            android:backgroundTint="#cbe421ba"
-            android:backgroundTintMode="src_atop"
-            android:fontFamily="cursive"
-            android:onClick="wybierz2"
-            android:phoneNumber="false"
+            android:layout_height="0dp"
+            android:background="@color/backgroundKonwerterWybierz"
             android:selectAllOnFocus="false"
             android:soundEffectsEnabled="false"
-            android:text="Wybierz"
+            android:text="@string/wybierz"
             android:textAlignment="center"
-            android:textColor="#ABFFAF"
+            android:textColor="@color/backgroundKonwerterPaste"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:typeface="sans" />
+            android:typeface="sans"
+            app:layout_constraintBottom_toBottomOf="@+id/textView"
+            app:layout_constraintEnd_toStartOf="@+id/textView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView" />
 
-        <EditText
-            android:id="@+id/edit2"
+        <TextView
+            android:id="@+id/textView"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:backgroundTint="@color/colorPrimaryDark"
-            android:backgroundTintMode="src_atop"
-            android:digits="0123456789.-"
-            android:inputType="number"
+            android:layout_height="0dp"
+            android:background="@color/backgroundKonwerterLiczba"
+            android:gravity="center"
             android:singleLine="false"
-            android:textColor="#482107"
-            android:textColorHint="#deaaaa" />
+            android:textColor="@color/colorPrimaryDark"
+            app:layout_constraintBottom_toBottomOf="@+id/buttonCopy"
+            app:layout_constraintEnd_toStartOf="@+id/buttonCopy"
+            app:layout_constraintStart_toEndOf="@+id/buttonWybierz2"
+            app:layout_constraintTop_toTopOf="@+id/buttonCopy" />
 
 
         <ImageButton
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:drawable/alert_dark_frame"
-            android:backgroundTint="#d3f41515"
-            android:backgroundTintMode="src_atop"
-            android:onClick="kopia"
+            android:id="@+id/buttonCopy"
+            android:layout_width="100dp"
+            android:layout_height="0dp"
+            android:background="@color/backgroundKonwerterPaste"
+            android:contentDescription="@string/image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="?android:attr/actionModeCopyDrawable" />
-    </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:id="@+id/idkonwertuj"
-        android:layout_width="match_parent"
+        android:id="@+id/buttonKonwertuj"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="10dp"
-        android:layout_weight="3"
-        android:background="@android:drawable/alert_dark_frame"
-        android:backgroundTint="#b2c1154e"
-        android:fontFamily="cursive"
-        android:onClick="konwertuje"
-        android:text="Konwertuj"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/backgroundKonwerterKonwertuj"
+        android:text="@string/konwertuj"
         android:textColor="#94ed9d"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:typeface="serif" />
+        android:typeface="serif"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
