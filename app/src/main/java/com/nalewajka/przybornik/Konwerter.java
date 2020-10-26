@@ -32,7 +32,7 @@ public class Konwerter extends AppCompatActivity {
         setContentView(R.layout.activity_konwerter);
 
         editText = findViewById(R.id.editText);
-        textView = findViewById(R.id.textView);
+        textView = findViewById(R.id.appName);
         buttonKategoria = findViewById(R.id.buttonKategoria);
         buttonWybierz1 = findViewById(R.id.buttonWybierz1);
         buttonWybierz2 = findViewById(R.id.buttonWybierz2);

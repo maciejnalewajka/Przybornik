@@ -55,7 +55,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:typeface="sans"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintBottom_toTopOf="@+id/appName"
         app:layout_constraintEnd_toStartOf="@+id/editText"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,7 +78,7 @@
         android:shadowColor="@color/black"
         android:shadowDx="2"
         android:shadowDy="2"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintBottom_toTopOf="@+id/appName"
         app:layout_constraintEnd_toStartOf="@+id/buttonWybierz2"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/buttonWybierz1"
@@ -109,7 +109,7 @@
         app:layout_constraintTop_toTopOf="@+id/buttonPaste" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/appName"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -137,11 +137,11 @@
         android:background="@drawable/button_paste"
         android:contentDescription="@string/image"
         android:tint="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintBottom_toBottomOf="@+id/appName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="@+id/textView"
+        app:layout_constraintStart_toEndOf="@+id/appName"
+        app:layout_constraintTop_toTopOf="@+id/appName"
         app:srcCompat="?android:attr/actionModeCopyDrawable" />
 
     <ImageButton
@@ -180,6 +180,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/appName" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

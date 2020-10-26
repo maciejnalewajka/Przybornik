@@ -3,15 +3,15 @@ package com.nalewajka.przybornik;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.WindowManager;
-import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button kalkulator;
-    Button konwerter;
-    Button notatnik;
+    ImageButton kalkulator;
+    ImageButton konwerter;
+    ImageButton notatnik;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,9 +20,9 @@ public class MainActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
-        kalkulator = findViewById(R.id.button1);
-        notatnik = findViewById(R.id.button2);
-        konwerter = findViewById(R.id.button3);
+        kalkulator = findViewById(R.id.calculator);
+        notatnik = findViewById(R.id.note);
+        konwerter = findViewById(R.id.converter);
 
         kalkulator.setOnClickListener(v -> {
             Intent intent1 = new Intent(v.getContext(), Kalkulator.class);
