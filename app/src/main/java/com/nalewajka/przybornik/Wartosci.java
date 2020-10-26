@@ -29,10 +29,6 @@ public class Wartosci {
         return _powierzchnia();
     }
 
-    public double waluta(){
-        return _waluta();
-    }
-
     public double objetosc(){
         return _objetosc();
     }
@@ -81,6 +77,7 @@ public class Wartosci {
             case "km/s": return liczba * 0.00044704;
             case "km/h": return liczba * 1.609344;
             case "kn": return liczba * 0.868976242;
+            case "mph": return liczba;
             case "ips": return liczba * 17.6;
             case "Ma": return liczba * 0.00131366441;
             case "c": return liczba * 0.00000000149116493;
@@ -111,6 +108,7 @@ public class Wartosci {
             case "Milimetr": return liczba * Math.pow(10,3);
             case "Centymetr": return liczba * Math.pow(10,2);
             case "Decymetr": return liczba * Math.pow(10,1);
+            case "Metr": return liczba;
             case "Kilometr": return liczba * 0.001;
             case "Mila morska": return liczba * 0.000539956803;
             case "Mila": return liczba * 0.000621371192;
@@ -141,6 +139,7 @@ public class Wartosci {
             case "Milimetr": return liczba * Math.pow(10,6);
             case "Centymetr": return liczba * Math.pow(10,4);
             case "Decymetr": return liczba * Math.pow(10,2);
+            case "Metr": return liczba;
             case "Ar": return liczba * 0.01;
             case "Hektar": return liczba * 0.0001;
             case "Kilometr": return liczba * 0.000001;
@@ -149,28 +148,6 @@ public class Wartosci {
             case "Jard": return liczba * 1.19599005;
             case "Stopa": return liczba * 10.7639104;
             case "Cal": return liczba * 1550.0031;
-        }
-        return 0;
-    }
-
-    private double _waluta() {
-        switch(wybierz1){
-            case "PLN": liczba *= Math.pow(10,12);break;
-            case "EUR": liczba *= Math.pow(10,12);break;
-            case "USD": liczba *= Math.pow(10,12);break;
-            case "CHF": liczba *= Math.pow(10,12);break;
-            case "GBP": liczba *= Math.pow(10,12);break;
-            case "NOK": liczba *= Math.pow(10,12);break;
-            case "CZK": liczba *= Math.pow(10,12);break;
-        }
-        switch(wybierz2){
-            case "PLN": return liczba * Math.pow(10,12);
-            case "EUR": return liczba * Math.pow(10,12);
-            case "USD": return liczba * Math.pow(10,12);
-            case "CHF": return liczba * Math.pow(10,12);
-            case "GBP": return liczba * Math.pow(10,12);
-            case "NOK": return liczba * Math.pow(10,12);
-            case "CZK": return liczba * Math.pow(10,12);
         }
         return 0;
     }
@@ -190,6 +167,7 @@ public class Wartosci {
             case "Centylitr": return liczba * Math.pow(10,4);
             case "Decylitr": return liczba * Math.pow(10,3);
             case "Litr": return liczba * Math.pow(10,2);
+            case "Hektolitr": return liczba;
             case "Stopa": return liczba * 3.53146667;
             case "Cal": return liczba * 6102.37441;
             case "Jard": return liczba * 0.130795062;
@@ -213,6 +191,7 @@ public class Wartosci {
             case "Mikrosekunda": return liczba *= (6*Math.pow(10,7));
             case "Milisekunda": return liczba *= (6*Math.pow(10,4));
             case "Sekunda": return liczba *= 60;
+            case "Minuta": return liczba;
             case "Godzina": return liczba *= 0.0166666667;
             case "Dzień": return liczba *= 0.000694444444;
             case "Tydzień": return liczba *= 0.0000992063492;
@@ -238,6 +217,7 @@ public class Wartosci {
             case "Miligram": return liczba *= Math.pow(10,9);
             case "Gram": return liczba *= Math.pow(10,6);
             case "Kilogram": return liczba *= Math.pow(10,3);
+            case "Tona": return liczba;
             case "Ziarno": return liczba *= 15432358.4;
             case "Karat": return liczba *= (5*Math.pow(10,6));
             case "Uncja": return liczba *= 35273.9619;

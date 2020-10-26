@@ -4,13 +4,15 @@
     <color name="colorPrimaryDark">#B8000000</color>
     <color name="colorAccent">#b83e4d4a</color>
     <color name="icon_b">#D1DCDB</color>
-    <color name="Przezroczysty">#003ba1ca</color>
-    <color name="Niebieski">#ea58a7cf</color>
 
-    <color name="backgroundKonwerter">#EA9CD4F1</color>
-    <color name="backgroundKonwerterKategoria">#EA406839</color>
-    <color name="backgroundKonwerterKonwertuj">#3F420D</color>
-    <color name="backgroundKonwerterWybierz">#A1EABF</color>
-    <color name="backgroundKonwerterPaste">#4F305E</color>
-    <color name="backgroundKonwerterLiczba">#F8F559</color>
+<!--Konwerter-->
+
+    <color name="black">#000</color>
+    <color name="grey2">#d9e4dd</color>
+    <color name="grey">#cdc9c3</color>
+    <color name="white">#fbf7f0</color>
+    <color name="color1">#ce6262</color>
+    <color name="color2">#555555</color>
+    <color name="color3">#8A8A8A</color>
+
 </resources>

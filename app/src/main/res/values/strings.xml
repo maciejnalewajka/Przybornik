@@ -1,13 +1,23 @@
 <resources>
     <string name="app_name">przybornik</string>
     <string name="zapisz">zapisz</string>
-    <string name="kategoria">kategoria</string>
-    <string name="wybierz">wybierz</string>
-    <string name="zla_wartosc">Zła wartość!</string>
     <string name="image">image</string>
+
     <string name="kalkulator">kalkulator</string>
     <string name="konwerter">konwerter</string>
     <string name="notatnik">notatnik</string>
+
+<!--    Notatnik-->
+
+
+<!--    Kalkulator-->
+
+
+<!--    Konwerter-->
+    <string name="kategoria">kategoria</string>
+    <string name="z">z</string>
+    <string name="naco">na co</string>
+    <string name="zla_wartosc">Zła wartość!</string>
     <string name="konwertuj">Konwertuj</string>
     <string name="podaj_liczbe">Podaj liczbę</string>
 </resources>

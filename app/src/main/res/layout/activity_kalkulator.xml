@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,7 +8,7 @@
     android:backgroundTint="#eaa10723"
     android:orientation="vertical"
     android:padding="3dp"
-    tools:context="pl.maciejnalewajka.przybornik.Kalkulator">
+    tools:context="com.nalewajka.przybornik.Kalkulator">
 
     <TextView
         android:id="@+id/resCalc"
@@ -88,7 +88,7 @@
             android:background="@android:drawable/editbox_dropdown_dark_frame"
             android:onClick="delate"
             android:text="C"
-            android:textColor="@color/Niebieski"
+            android:textColor="@color/color1"
             android:textSize="11sp"
             android:textStyle="bold" />
 

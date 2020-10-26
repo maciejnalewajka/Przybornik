@@ -1,12 +1,13 @@
 package com.nalewajka.przybornik;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -14,16 +15,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.Objects;
 
 public class Konwerter extends AppCompatActivity {
-    EditText editText;
-    TextView textView;
-    Button buttonKategoria, buttonWybierz1, buttonWybierz2, buttonKonwertuj;
-    ImageButton buttonCopy, buttonPaste;
-    String wybierz1, wybierz2, kategoria;
-    double liczba;
+    private EditText editText;
+    private TextView textView;
+    private Button buttonKategoria;
+    private Button buttonWybierz1;
+    private Button buttonWybierz2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,51 +36,21 @@ public class Konwerter extends AppCompatActivity {
         buttonKategoria = findViewById(R.id.buttonKategoria);
         buttonWybierz1 = findViewById(R.id.buttonWybierz1);
         buttonWybierz2 = findViewById(R.id.buttonWybierz2);
-        buttonKonwertuj = findViewById(R.id.buttonKonwertuj);
-        buttonCopy = findViewById(R.id.buttonCopy);
-        buttonPaste = findViewById(R.id.buttonPaste);
+        Button buttonKonwertuj = findViewById(R.id.buttonKonwertuj);
+        ImageButton buttonCopy = findViewById(R.id.buttonCopy);
+        ImageButton buttonPaste = findViewById(R.id.buttonPaste);
 
-        buttonKategoria.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                kategoria();
-            }
-        });
+        buttonKategoria.setOnClickListener(v -> kategoria());
 
-        buttonWybierz1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                wybierz1();
-            }
-        });
+        buttonWybierz1.setOnClickListener(v -> wybierz1());
 
-        buttonWybierz2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                wybierz2();
-            }
-        });
+        buttonWybierz2.setOnClickListener(v -> wybierz2());
 
-        buttonKonwertuj.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                konwertuj();
-            }
-        });
+        buttonKonwertuj.setOnClickListener(v -> konwertuj());
 
-        buttonCopy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                copy();
-            }
-        });
+        buttonCopy.setOnClickListener(v -> copy());
 
-        buttonPaste.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                paste();
-            }
-        });
+        buttonPaste.setOnClickListener(v -> paste());
     }
 
     private void copy(){
@@ -100,19 +69,17 @@ public class Konwerter extends AppCompatActivity {
     }
 
     private void kategoria() {
-        final String[] kategorie = {"Temperatura", "Prędkość", "Długość", "Powierzchnia", "Waluta", "Objętość", "Czas", "Masa"};
+        final String[] kategorie = {"Temperatura", "Prędkość", "Długość", "Powierzchnia", "Objętość", "Czas", "Masa"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Kategorie");
-        builder.setItems(kategorie, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int item) {
-                buttonKategoria.setText(kategorie[item]);
-            }
-        }).getContext().setTheme(R.style.Theme_AppCompat_DayNight_Dialog_Alert);
+        builder.setItems(kategorie, (dialog, item) ->
+                buttonKategoria.setText(kategorie[item])).getContext()
+                .setTheme(R.style.Theme_AppCompat_DayNight_Dialog_Alert);
         builder.create();
         builder.show();
-        buttonWybierz1.setText(R.string.wybierz);
-        buttonWybierz2.setText(R.string.wybierz);
+        buttonWybierz1.setText(R.string.z);
+        buttonWybierz2.setText(R.string.naco);
+        hideKeyboard(this);
     }
 
     public void wybierz1() {
@@ -132,10 +99,6 @@ public class Konwerter extends AppCompatActivity {
             case "Powierzchnia":
                 String[] powierzchnia = {"Mikron", "Milimetr", "Centymetr", "Decymetr", "Metr", "Ar", "Hektar", "Kilometr", "Akr", "Mila", "Jard", "Stopa", "Cal"};
                 builderWybierz(powierzchnia, buttonWybierz1);
-                break;
-            case "Waluta":
-                String[] waluta = {"PLN", "EUR", "USD", "CHF", "GBP", "RUB", "NOK", "CZK"};
-                builderWybierz(waluta, buttonWybierz1);
                 break;
             case "Objętość":
                 String[] objetosc = {"Mililitr", "Centylitr", "Decylitr", "Litr", "Hektolitr", "Stopa", "Cal", "Jard"};
@@ -170,10 +133,6 @@ public class Konwerter extends AppCompatActivity {
                 String[] powierzchnia = {"Mikron", "Milimetr", "Centymetr", "Decymetr", "Metr", "Ar", "Hektar", "Kilometr", "Akr", "Mila", "Jard", "Stopa", "Cal"};
                 builderWybierz(powierzchnia, buttonWybierz2);
                 break;
-            case "Waluta":
-                String[] waluta = {"PLN", "EUR", "USD", "CHF", "GBP", "RUB", "NOK", "CZK"};
-                builderWybierz(waluta, buttonWybierz2);
-                break;
             case "Objętość":
                 String[] objetosc = {"Mililitr", "Centylitr", "Decylitr", "Litr", "Hektolitr", "Stopa", "Cal", "Jard"};
                 builderWybierz(objetosc, buttonWybierz2);
@@ -191,10 +150,10 @@ public class Konwerter extends AppCompatActivity {
 
     private void konwertuj() {
         try{
-            wybierz1 = buttonWybierz1.getText().toString();
-            wybierz2 = buttonWybierz2.getText().toString();
-            liczba = Double.parseDouble(editText.getText().toString());
-            kategoria = buttonKategoria.getText().toString();
+            String wybierz1 = buttonWybierz1.getText().toString();
+            String wybierz2 = buttonWybierz2.getText().toString();
+            double liczba = Double.parseDouble(editText.getText().toString());
+            String kategoria = buttonKategoria.getText().toString();
             if(Objects.equals(wybierz1, wybierz2)){textView.setText(String.valueOf(liczba));}
             else{
                 Wartosci wartosci = new Wartosci(wybierz1, wybierz2, liczba);
@@ -211,9 +170,6 @@ public class Konwerter extends AppCompatActivity {
                     case "Powierzchnia":
                         textView.setText(String.valueOf(wartosci.powierzchnia()));
                         break;
-                    case "Waluta":
-                        textView.setText(String.valueOf(wartosci.waluta()));
-                        break;
                     case "Objętość":
                         textView.setText(String.valueOf(wartosci.objetosc()));
                         break;
@@ -227,6 +183,7 @@ public class Konwerter extends AppCompatActivity {
             }
         }
         catch (IllegalArgumentException e){textView.setText(R.string.zla_wartosc);}
+        hideKeyboard(this);
     }
 
     private void builderWybierz(String[] list, Button but){
@@ -234,13 +191,21 @@ public class Konwerter extends AppCompatActivity {
         final Button button = but;
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Wybierz");
-        builder.setItems(wybierzLista, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                button.setText(wybierzLista[which]);
-            }
-        }).getContext().setTheme(R.style.Theme_AppCompat_DayNight_Dialog_Alert);
+        builder.setItems(wybierzLista, (dialog, which) -> button.setText(wybierzLista[which]))
+                .getContext().setTheme(R.style.Theme_AppCompat_DayNight_Dialog_Alert);
         builder.create();
         builder.show();
+        hideKeyboard(this);
+    }
+
+    private void hideKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        View view = activity.getCurrentFocus();
+        if (view == null) {
+            view = new View(activity);
+        }
+        if (imm != null) {
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 }
