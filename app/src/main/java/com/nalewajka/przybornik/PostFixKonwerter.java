@@ -6,9 +6,9 @@ import java.util.Deque;
 import java.util.List;
 
 public class PostFixKonwerter {
-        private String infix; // The infix expression to be converted
-        private Deque<Character> stack = new ArrayDeque<Character>();
-        private List<String> postfix = new ArrayList<String>(); // To hold the postfix expression
+        private String infix;
+        private Deque<Character> stack = new ArrayDeque<>();
+        private List<String> postfix = new ArrayList<>();
 
         public PostFixKonwerter(String expression) {
             infix = expression;
@@ -20,7 +20,7 @@ public class PostFixKonwerter {
 
             for (int i = 0; i != infix.length(); ++i) {
                 if  (String.valueOf(infix.charAt(0)).equals(".")){
-                    i++;
+                    i += 1;
                     break;
                 }
                 if (Character.isDigit(infix.charAt(i))) {

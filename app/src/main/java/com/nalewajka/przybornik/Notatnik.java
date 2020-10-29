@@ -1,14 +1,12 @@
 package com.nalewajka.przybornik;
 
-import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -18,7 +16,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import io.realm.Realm;
@@ -27,12 +24,14 @@ import io.realm.RealmResults;
 public class Notatnik extends AppCompatActivity {
 
     private Realm realm;
-    private EditText editText;
+    private Integer val;
     private Button edit, delete, copy;
     private ConstraintLayout optionB, option;
-    private ArrayList<Note> data = new ArrayList<>();
+    private ArrayList<Notatka> data = new ArrayList<>();
+    private String text = "";
+    Button deleteAll;
     Adapter adapter;
-    Note optionNote;
+    Notatka optionNote;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,18 +41,16 @@ public class Notatnik extends AppCompatActivity {
         setContentView(R.layout.activity_notatnik);
         Realm.init(this);
         realm = Realm.getDefaultInstance();
-
-        editText = findViewById(R.id.editText);
         edit = findViewById(R.id.edit);
         delete = findViewById(R.id.delete);
         copy = findViewById(R.id.copy);
         optionB = findViewById(R.id.optionBackground);
         option = findViewById(R.id.options);
-        ImageButton saveButton = findViewById(R.id.button_save);
+        deleteAll = findViewById(R.id.deleteAll);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.notes_list);
-
-
-        adapter = new Adapter(getData());
+        ImageButton addNote = findViewById(R.id.button_add_note);
+        ImageButton settings = findViewById(R.id.settings);
+        adapter = new Adapter();
         adapter.setOnItemClickListener(onItemClickListener);
         LinearLayoutManager  layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -61,20 +58,31 @@ public class Notatnik extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
 
-        saveButton.setOnClickListener(v -> save(editText.getText().toString().trim(), new Date()));
-
-        optionB.setOnClickListener(v -> changeVisibility());
+        optionB.setOnClickListener(v -> changeVisibilityOption(val));
 
         edit.setOnClickListener(v -> edit(optionNote));
 
-        delete.setOnClickListener(v -> delete(optionNote));
+        delete.setOnClickListener(v -> {
+            delete(optionNote);
+            Toast.makeText(this, "Usunięto!", Toast.LENGTH_SHORT).show();
+        });
 
         copy.setOnClickListener(v -> copy(optionNote));
+
+        addNote.setOnClickListener(v -> newNote());
+
+        settings.setOnClickListener(v -> {
+            val = 1;
+            changeVisibilityOption(val);
+        });
+
+        deleteAll.setOnClickListener(v -> deleteAll());
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        adapter.setData(getData());
     }
 
     @Override
@@ -83,33 +91,23 @@ public class Notatnik extends AppCompatActivity {
         realm.close();
     }
 
-    private void save(String text, Date date) {
-        Note note = new Note(text, date);
+    private void delete(Notatka note) {
         realm.beginTransaction();
-        realm.copyToRealm(note);
-        realm.commitTransaction();
-        editText.setText("");
-        hideKeyboard();
-        adapter.setData(getData());
-        adapter.notifyDataSetChanged();
-    }
-
-    private void delete(Note note) {
-        realm.beginTransaction();
-        RealmResults<Note> rows = realm.where(Note.class).equalTo("id", note.getId()).findAll();
+        RealmResults<Notatka> rows = realm.where(Notatka.class).equalTo("id", note.getId()).findAll();
         rows.deleteAllFromRealm();
         realm.commitTransaction();
         adapter.setData(getData());
         adapter.notifyDataSetChanged();
-        changeVisibility();
+        changeVisibilityOption(val);
     }
 
-    private void edit(Note note) {
-        editText.setText(note.getText());
+    private void edit(Notatka note) {
         delete(note);
+        text = note.getText();
+        newNote();
     }
 
-    private void copy(Note note){
+    private void copy(Notatka note){
         ClipboardManager copy = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
         ClipData copy2 = ClipData.newPlainText("Kopia", note.getText());
         if (copy != null) {
@@ -118,17 +116,17 @@ public class Notatnik extends AppCompatActivity {
         }
     }
 
-    private ArrayList<Note> getData(){
-        RealmResults<Note> realmResults = realm.where(Note.class).findAll();
-        ArrayList<Note> newNotes = new ArrayList<>(realm.copyFromRealm(realmResults));
+    private ArrayList<Notatka> getData(){
+        RealmResults<Notatka> realmResults = realm.where(Notatka.class).findAll();
+        ArrayList<Notatka> newNotes = new ArrayList<>(realm.copyFromRealm(realmResults));
         return sort(newNotes);
     }
 
-    private ArrayList<Note> sort(List<Note> notes){
-        ArrayList<Note> newNotes = new ArrayList<>();
+    private ArrayList<Notatka> sort(List<Notatka> notes){
+        ArrayList<Notatka> newNotes = new ArrayList<>();
         while (notes.size() > 0){
-            Note noteMin = notes.get(0);
-            for(Note item : notes){
+            Notatka noteMin = notes.get(0);
+            for(Notatka item : notes){
                 if (item.getId() > noteMin.getId()){
                     noteMin = item;
                 }
@@ -143,36 +141,54 @@ public class Notatnik extends AppCompatActivity {
     private View.OnClickListener onItemClickListener = view -> {
         RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
         int position = viewHolder.getAdapterPosition();
-        changeVisibility();
-        hideKeyboard();
+        val = 0;
+        changeVisibilityOption(val);
         optionNote = data.get(position);
     };
 
-    private void changeVisibility(){
-        if(edit.getVisibility() == View.VISIBLE){
-            optionB.setVisibility(View.INVISIBLE);
-            option.setVisibility(View.INVISIBLE);
-            edit.setVisibility(View.INVISIBLE);
-            delete.setVisibility(View.INVISIBLE);
-            copy.setVisibility(View.INVISIBLE);
-        }
-        else{
-            optionB.setVisibility(View.VISIBLE);
-            option.setVisibility(View.VISIBLE);
-            edit.setVisibility(View.VISIBLE);
-            delete.setVisibility(View.VISIBLE);
-            copy.setVisibility(View.VISIBLE);
+    private void changeVisibilityOption(Integer val){
+        switch(val) {
+            case 0:
+                if (edit.getVisibility() == View.VISIBLE) {
+                    optionB.setVisibility(View.GONE);
+                    option.setVisibility(View.GONE);
+                    edit.setVisibility(View.GONE);
+                    delete.setVisibility(View.GONE);
+                    copy.setVisibility(View.GONE);
+                } else {
+                    optionB.setVisibility(View.VISIBLE);
+                    option.setVisibility(View.VISIBLE);
+                    edit.setVisibility(View.VISIBLE);
+                    delete.setVisibility(View.VISIBLE);
+                    copy.setVisibility(View.VISIBLE);
+                }
+                break;
+            case 1:
+                if(deleteAll.getVisibility() == View.VISIBLE){
+                    optionB.setVisibility(View.GONE);
+                    option.setVisibility(View.GONE);
+                    deleteAll.setVisibility(View.GONE);
+                }
+                else{
+                    optionB.setVisibility(View.VISIBLE);
+                    option.setVisibility(View.VISIBLE);
+                    deleteAll.setVisibility(View.VISIBLE);
+                }break;
+
         }
     }
 
-    private void hideKeyboard() {
-        InputMethodManager imm = (InputMethodManager) this.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        View view = this.getCurrentFocus();
-        if (view == null) {
-            view = new View(this);
-        }
-        if (imm != null) {
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
+    private void newNote(){
+        Intent intent = new Intent(this, NowaNotatka.class);
+        intent.putExtra("id", text);
+        startActivity(intent);
+    }
+
+    private void deleteAll(){
+        realm.beginTransaction();
+        realm.deleteAll();
+        realm.commitTransaction();
+        adapter.setData(new ArrayList<>());
+        changeVisibilityOption(val);
     }
 }

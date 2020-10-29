@@ -2,13 +2,12 @@ package com.nalewajka.przybornik;
 
 import java.math.BigDecimal;
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
 public class PostFixKalkulator {
-    private List<String> expression = new ArrayList<String>();
-    private Deque<Double> stack = new ArrayDeque<Double>();
+    private List<String> expression;
+    private Deque<Double> stack = new ArrayDeque<>();
 
     public PostFixKalkulator(List<String> postfix) {
         expression = postfix;
@@ -19,7 +18,6 @@ public class PostFixKalkulator {
 
         for (int i = 0; i != expression.size(); ++i) {
             double tempResult =0;
-            // Determine if current element is digit or not
             if (Character.isDigit(expression.get(i).charAt(0))) {
 
                 stack.addLast(Double.parseDouble(expression.get(i)));
@@ -63,7 +61,6 @@ public class PostFixKalkulator {
                             tempResult = Math.cos(temp);
                             break;
                         case "s":
-                            System.out.println("jestem w sin");
                             temp = stack.removeLast();
                             tempResult = Math.sin(temp);
                             break;
@@ -94,7 +91,7 @@ public class PostFixKalkulator {
                 stack.addLast(tempResult);
             }
         }
-        return new BigDecimal(stack.removeLast()).setScale(3, BigDecimal.ROUND_HALF_UP);
+        return BigDecimal.valueOf(stack.removeLast()).setScale(3, BigDecimal.ROUND_HALF_UP);
     }
 
     public double resultProcentages(double numberr) {

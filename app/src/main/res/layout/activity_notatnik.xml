@@ -6,49 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/black"
     android:padding="4dp"
-    tools:context="com.nalewajka.przybornik.Notatnik">
-
-    <MultiAutoCompleteTextView
-        android:id="@+id/editText"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:autofillHints=""
-        android:background="@drawable/options"
-        android:cursorVisible="true"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:gravity="top|start"
-        android:hint="@string/dotdotdot"
-        android:inputType="textMultiLine"
-        android:padding="8dp"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:shadowColor="@color/black"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        android:shadowRadius="1"
-        android:text=""
-        android:textColor="@color/newHint"
-        android:textColorHint="@color/newHint"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/scroll2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/button_save"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/button_ok"
-        android:contentDescription="@string/image"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/editText"
-        app:layout_constraintEnd_toEndOf="@+id/editText"
-        app:srcCompat="@drawable/ok" />
+    tools:context=".Notatnik">
 
     <ScrollView
         android:id="@+id/scroll2"
@@ -59,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/notes_list"
@@ -70,12 +28,40 @@
 
     </ScrollView>
 
+    <ImageButton
+        android:id="@+id/button_add_note"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_ok"
+        android:contentDescription="@string/image"
+        android:scaleType="fitCenter"
+        android:src="@drawable/add"
+        android:tint="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/scroll2"
+        app:layout_constraintEnd_toEndOf="@+id/scroll2" />
+
+    <ImageButton
+        android:id="@+id/settings"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/button_settings"
+        android:contentDescription="@string/image"
+        android:scaleType="fitCenter"
+        android:src="@drawable/dots"
+        android:tint="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/scroll2"
+        app:layout_constraintTop_toTopOf="@+id/scroll2" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/optionBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#572E3351"
-        android:visibility="invisible"
+        android:background="#4AB3B9DF"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -88,7 +74,7 @@
         android:layout_height="160dp"
         android:background="@drawable/options"
         android:padding="15dp"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -99,6 +85,8 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/options_button"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:shadowColor="@color/black"
             android:shadowDx="2"
             android:shadowDy="2"
@@ -106,7 +94,7 @@
             android:text="@string/kopiuj"
             android:textColor="@color/white"
             android:textSize="16sp"
-            android:visibility="invisible"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/edit"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -119,6 +107,8 @@
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/options_button"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:shadowColor="@color/black"
             android:shadowDx="2"
             android:shadowDy="2"
@@ -126,7 +116,7 @@
             android:text="@string/edytuj"
             android:textColor="@color/white"
             android:textSize="16sp"
-            android:visibility="invisible"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/delete"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -139,6 +129,8 @@
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/options_button"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:shadowColor="@color/black"
             android:shadowDx="2"
             android:shadowDy="2"
@@ -146,12 +138,32 @@
             android:text="@string/usu"
             android:textColor="@color/white"
             android:textSize="16sp"
-            android:visibility="invisible"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edit" />
+
+        <Button
+            android:id="@+id/deleteAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/options_button"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:shadowColor="@color/black"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="1"
+            android:text="@string/usu_wszystko"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,510 +1,855 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:drawable/alert_dark_frame"
-    android:backgroundTint="#eaa10723"
-    android:orientation="vertical"
+    android:background="@color/black"
     android:padding="3dp"
     tools:context="com.nalewajka.przybornik.Kalkulator">
 
-    <TextView
-        android:id="@+id/resCalc"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3"
-        android:background="@android:drawable/alert_dark_frame"
-        android:backgroundTint="#453e3e"
-        android:gravity="top|end"
-        android:hint="0"
-        android:textColor="#5bd5e0"
-        android:textColorHint="#7a5bd5e0"
-        android:textSize="22sp"
-        android:textStyle="bold" />
+        android:layout_height="100dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_weight="2"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btn1"
+        <TextView
+            android:id="@+id/wynik"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:background="@android:drawable/editbox_dropdown_dark_frame"
-            android:onClick="clickOn9"
-            android:text="1"
-            android:textColor="#ea58a7cf"
-            android:textSize="11sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/btn2"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:background="@android:drawable/editbox_dropdown_dark_frame"
-            android:onClick="clickOn9"
-            android:text="2"
-            android:textColor="#ea58a7cf"
-            android:textSize="11sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/btn3"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:background="@android:drawable/editbox_dropdown_dark_frame"
-            android:onClick="clickOn9"
-            android:text="3"
-            android:textColor="#ea58a7cf"
-            android:textSize="11sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/clear"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:drawable/editbox_dropdown_dark_frame"
-            android:onClick="ClearScreen"
-            android:text="CE"
-            android:textColor="#ea58a7cf"
-            android:textSize="11sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/backSpace"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:drawable/editbox_dropdown_dark_frame"
-            android:onClick="delate"
-            android:text="C"
-            android:textColor="@color/color1"
-            android:textSize="11sp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_weight="2"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btn4"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:background="@android:drawable/editbox_dropdown_dark_frame"
-            android:onClick="clickOn9"
-            android:text="4"
-            android:textColor="#ea58a7cf"
-            android:textSize="11sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/btn5"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:background="@android:drawable/editbox_dropdown_dark_frame"
-            android:onClick="clickOn9"
-            android:text="5"
-            android:textColor="#ea58a7cf"
-            android:textSize="11sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/btn6"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:background="@android:drawable/editbox_dropdown_dark_frame"
-            android:onClick="clickOn9"
-            android:text="6"
-            android:textColor="#ea58a7cf"
-            android:textSize="11sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/plus"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:drawable/editbox_dropdown_dark_frame"
-            android:onClick="clickOn9"
-            android:text="+"
-            android:textColor="#ea58a7cf"
-            android:textSize="11sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/minus"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:drawable/editbox_dropdown_dark_frame"
-            android:onClick="clickOn9"
-            android:text="-"
-            android:textColor="#ea58a7cf"
-            android:textSize="11sp"
-            android:textStyle="bold" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_weight="2"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btn7"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:background="@android:drawable/editbox_dropdown_dark_frame"
-            android:onClick="clickOn9"
-            android:text="7"
-            android:textColor="#ea58a7cf"
-            android:textSize="11sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/btn8"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:background="@android:drawable/editbox_dropdown_dark_frame"
-            android:onClick="clickOn9"
-            android:text="8"
-            android:textColor="#ea58a7cf"
-            android:textSize="11sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/btn9"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:background="@android:drawable/editbox_dropdown_dark_frame"
-            android:onClick="clickOn9"
-            android:text="9"
-            android:textColor="#ea58a7cf"
-            android:textSize="11sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/multiply"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:drawable/editbox_dropdown_dark_frame"
-            android:onClick="clickOn9"
-            android:text="x"
-            android:textColor="#ea58a7cf"
-            android:textSize="11sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/divide"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:drawable/editbox_dropdown_dark_frame"
-            android:onClick="clickOn9"
-            android:text="/"
-            android:textColor="#ea58a7cf"
-            android:textSize="11sp"
-            android:textStyle="bold" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_weight="2"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/dot"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:drawable/editbox_dropdown_dark_frame"
-            android:nestedScrollingEnabled="false"
-            android:onClick="addDot"
-            android:text="."
-            android:textAllCaps="false"
-            android:textColor="#ea58a7cf"
-            android:textSize="11sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/openBracket"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:drawable/editbox_dropdown_dark_frame"
-            android:onClick="clickOn9"
-            android:text="("
-            android:textColor="#ea58a7cf"
-            android:textSize="11sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/btn0"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:background="@android:drawable/editbox_dropdown_dark_frame"
-            android:onClick="clickOn9"
-            android:text="0"
-            android:textColor="#ea58a7cf"
-            android:textSize="11sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/closeBracket"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:drawable/editbox_dropdown_dark_frame"
-            android:onClick="clickOn9"
-            android:text=")"
-            android:textColor="#ea58a7cf"
-            android:textSize="11sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/posneg"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:drawable/editbox_dropdown_dark_frame"
-            android:onClick="clickOn9"
-            android:text="%"
-            android:textColor="#ea58a7cf"
-            android:textSize="11sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/sin"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:drawable/editbox_dropdown_dark_frame"
-            android:onClick="clickOn9"
-            android:text="sin"
-            android:textColor="#ea58a7cf"
-            android:textSize="11sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/cos"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:drawable/editbox_dropdown_dark_frame"
-            android:onClick="clickOn9"
-            android:text="COS"
-            android:textAllCaps="false"
-            android:textColor="#ea58a7cf"
-            android:textSize="11sp"
-            android:textStyle="bold" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_weight="2"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/xpowy"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:drawable/editbox_dropdown_dark_frame"
-            android:onClick="clickOn9"
-            android:text="xpown"
-            android:textAllCaps="false"
-            android:textColor="#ea58a7cf"
-            android:textSize="11sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/square"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:drawable/editbox_dropdown_dark_frame"
-            android:onClick="clickOn9"
-            android:text="square"
-            android:textAllCaps="false"
-            android:textColor="#ea58a7cf"
-            android:textSize="11sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/sqrt"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:drawable/editbox_dropdown_dark_frame"
-            android:onClick="clickOn9"
-            android:text="sqrt"
-            android:textAllCaps="false"
-            android:textColor="#ea58a7cf"
-            android:textSize="11sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/log"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:drawable/editbox_dropdown_dark_frame"
-            android:onClick="clickOn9"
-            android:text="log"
-            android:textAllCaps="false"
-            android:textColor="#ea58a7cf"
-            android:textSize="11sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/tan"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:drawable/editbox_dropdown_dark_frame"
-            android:onClick="clickOn9"
-            android:text="tan"
-            android:textAllCaps="false"
-            android:textColor="#ea58a7cf"
-            android:textSize="11sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/pi"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:drawable/editbox_dropdown_dark_frame"
-            android:onClick="pi"
-            android:text="PI"
-            android:textAllCaps="false"
-            android:textColor="#ea58a7cf"
-            android:textSize="11sp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_weight="2"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/toggle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:drawable/editbox_dropdown_dark_frame"
-            android:checked="false"
-            android:onClick="log"
-            android:text="toggle"
-            android:textAllCaps="false"
-            android:textColor="#ea58a7cf"
-            android:textColorLink="#81ffffff"
-            android:textSize="11sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/factorial"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:drawable/editbox_dropdown_dark_frame"
-            android:onClick="clickOn9"
-            android:text="fractl"
-            android:textAllCaps="false"
-            android:textColor="#ea58a7cf"
-            android:textSize="11sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/mode"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:drawable/editbox_dropdown_dark_frame"
-            android:onClick="clickOn9"
-            android:text="mod"
-            android:textAllCaps="false"
-            android:textColor="#ea58a7cf"
-            android:textSize="11sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/equal"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:drawable/editbox_dropdown_dark_frame"
-            android:onClick="resultOnScreen"
-            android:text="="
-            android:textColor="#ea58a7cf"
-            android:textSize="18sp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:hint="@string/_0"
+            android:padding="8dp"
+            android:shadowColor="#FFD5D5"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2"
+            android:textColor="@color/white"
+            android:textColorHint="#7AAEF8FF"
+            android:textSize="22sp"
             android:textStyle="bold"
-            tools:ignore="OnClick" />
-    </LinearLayout>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="4"
-        android:background="@android:drawable/alert_dark_frame"
-        android:backgroundTint="#453e3e"
-        android:orientation="vertical">
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
-        <ScrollView
-            android:id="@+id/SCROLLER_ID"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:fillViewport="true"
-            android:scrollbars="vertical">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="spread">
+
+            <Button
+                android:id="@+id/btn2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_buttons_kalkulator"
+                android:onClick="click"
+                android:padding="2dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="1"
+                android:text="@string/_2"
+                android:textColor="@color/buttonsKalkulator"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn3"
+                app:layout_constraintStart_toEndOf="@+id/btn1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/clear"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_buttons_kalkulator"
+                android:onClick="click"
+                android:padding="2dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="1"
+                android:text="@string/ce"
+                android:textColor="@color/buttonsKalkulator"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/backSpace"
+                app:layout_constraintStart_toEndOf="@+id/btn3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btn3"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_buttons_kalkulator"
+                android:onClick="click"
+                android:padding="2dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="1"
+                android:text="@string/_3"
+                android:textColor="@color/buttonsKalkulator"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/clear"
+                app:layout_constraintStart_toEndOf="@+id/btn2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/backSpace"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_buttons_kalkulator"
+                android:onClick="click"
+                android:padding="2dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="1"
+                android:text="@string/c"
+                android:textColor="@color/buttonsKalkulator"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/clear"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btn1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_buttons_kalkulator"
+                android:onClick="click"
+                android:padding="2dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="1"
+                android:text="@string/_1"
+                android:textColor="@color/buttonsKalkulator"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout9"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
+
+            <Button
+                android:id="@+id/minus"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_buttons_kalkulator"
+                android:onClick="click"
+                android:padding="2dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="1"
+                android:text="@string/minus"
+                android:textColor="@color/buttonsKalkulator"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/plus"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btn4"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_buttons_kalkulator"
+                android:onClick="click"
+                android:padding="2dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="1"
+                android:text="@string/_4"
+                android:textColor="@color/buttonsKalkulator"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/plus"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_buttons_kalkulator"
+                android:onClick="click"
+                android:padding="2dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="1"
+                android:text="@string/plus"
+                android:textColor="@color/buttonsKalkulator"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/minus"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/btn6"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btn6"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_buttons_kalkulator"
+                android:onClick="click"
+                android:padding="2dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="1"
+                android:text="@string/_6"
+                android:textColor="@color/buttonsKalkulator"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/plus"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/btn5"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btn5"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_buttons_kalkulator"
+                android:onClick="click"
+                android:padding="2dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="1"
+                android:text="@string/_5"
+                android:textColor="@color/buttonsKalkulator"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn6"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/btn4"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout9">
+
+            <Button
+                android:id="@+id/btn7"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_buttons_kalkulator"
+                android:onClick="click"
+                android:padding="2dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="1"
+                android:text="@string/_7"
+                android:textColor="@color/buttonsKalkulator"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn8"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/multiply"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_buttons_kalkulator"
+                android:onClick="click"
+                android:padding="2dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="1"
+                android:text="@string/razy"
+                android:textColor="@color/buttonsKalkulator"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/divide"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/btn9"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/divide"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_buttons_kalkulator"
+                android:onClick="click"
+                android:padding="2dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="1"
+                android:text="@string/podziel"
+                android:textColor="@color/buttonsKalkulator"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/multiply"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btn8"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_buttons_kalkulator"
+                android:onClick="click"
+                android:padding="2dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="1"
+                android:text="@string/_8"
+                android:textColor="@color/buttonsKalkulator"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn9"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/btn7"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btn9"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_buttons_kalkulator"
+                android:onClick="click"
+                android:padding="2dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="1"
+                android:text="@string/_9"
+                android:textColor="@color/buttonsKalkulator"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/multiply"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/btn8"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout6"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout7"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
+
+            <Button
+                android:id="@+id/openBracket"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_buttons_kalkulator"
+                android:onClick="click"
+                android:padding="2dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="1"
+                android:text="@string/nawias_otwarty"
+                android:textColor="@color/buttonsKalkulator"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn0"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/dot"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/cos"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_buttons_kalkulator"
+                android:onClick="click"
+                android:padding="2dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="1"
+                android:text="@string/cos"
+                android:textAllCaps="false"
+                android:textColor="@color/buttonsKalkulator"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/sin"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/posneg"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_buttons_kalkulator"
+                android:onClick="click"
+                android:padding="2dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="1"
+                android:text="@string/procent"
+                android:textColor="@color/buttonsKalkulator"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/sin"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/closeBracket"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btn0"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_buttons_kalkulator"
+                android:onClick="click"
+                android:padding="2dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="1"
+                android:text="@string/_0"
+                android:textColor="@color/buttonsKalkulator"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/closeBracket"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/openBracket"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/closeBracket"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_buttons_kalkulator"
+                android:onClick="click"
+                android:padding="2dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="1"
+                android:text="@string/nawias_zamkniety"
+                android:textColor="@color/buttonsKalkulator"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/posneg"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/btn0"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/sin"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_buttons_kalkulator"
+                android:onClick="click"
+                android:padding="2dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="1"
+                android:text="@string/sin"
+                android:textColor="@color/buttonsKalkulator"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/cos"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/posneg"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/dot"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_buttons_kalkulator"
+                android:onClick="click"
+                android:padding="2dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="1"
+                android:text="@string/kropka"
+                android:textAllCaps="false"
+                android:textColor="@color/buttonsKalkulator"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/openBracket"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout7"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout6">
+
+            <Button
+                android:id="@+id/xpowy"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_buttons_kalkulator"
+                android:onClick="click"
+                android:padding="2dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="1"
+                android:text="@string/xpown"
+                android:textAllCaps="false"
+                android:textColor="@color/buttonsKalkulator"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/square"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/sqrt"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_buttons_kalkulator"
+                android:onClick="click"
+                android:padding="2dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="1"
+                android:text="@string/sqrt"
+                android:textAllCaps="false"
+                android:textColor="@color/buttonsKalkulator"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/log"
+                app:layout_constraintStart_toEndOf="@+id/square"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/pi"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_buttons_kalkulator"
+                android:onClick="click"
+                android:padding="2dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="1"
+                android:text="@string/pi"
+                android:textAllCaps="false"
+                android:textColor="@color/buttonsKalkulator"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tan"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/log"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_buttons_kalkulator"
+                android:onClick="click"
+                android:padding="2dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="1"
+                android:text="@string/log"
+                android:textAllCaps="false"
+                android:textColor="@color/buttonsKalkulator"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tan"
+                app:layout_constraintStart_toEndOf="@+id/sqrt"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/tan"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_buttons_kalkulator"
+                android:onClick="click"
+                android:padding="2dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="1"
+                android:text="@string/tan"
+                android:textAllCaps="false"
+                android:textColor="@color/buttonsKalkulator"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/pi"
+                app:layout_constraintStart_toEndOf="@+id/log"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/square"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_buttons_kalkulator"
+                android:onClick="click"
+                android:padding="2dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="1"
+                android:text="@string/square"
+                android:textAllCaps="false"
+                android:textColor="@color/buttonsKalkulator"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/sqrt"
+                app:layout_constraintStart_toEndOf="@+id/xpowy"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout8"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout7">
+
+            <Button
+                android:id="@+id/mode"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_buttons_kalkulator"
+                android:onClick="click"
+                android:padding="2dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="1"
+                android:text="@string/mod"
+                android:textAllCaps="false"
+                android:textColor="@color/buttonsKalkulator"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/equal"
+                app:layout_constraintStart_toEndOf="@+id/factorial"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/factorial"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_buttons_kalkulator"
+                android:onClick="click"
+                android:padding="2dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="1"
+                android:text="@string/fractl"
+                android:textAllCaps="false"
+                android:textColor="@color/buttonsKalkulator"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/mode"
+                app:layout_constraintStart_toEndOf="@+id/toggle"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/toggle"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_buttons_kalkulator"
+                android:checked="false"
+                android:onClick="click"
+                android:padding="2dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="1"
+                android:text="@string/toggle"
+                android:textAllCaps="false"
+                android:textColor="@color/buttonsKalkulator"
+                android:textColorLink="#81ffffff"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/factorial"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/equal"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_buttons_kalkulator"
+                android:onClick="click"
+                android:padding="2dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="1"
+                android:text="@string/wynik"
+                android:textColor="@color/buttonsKalkulator"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/mode"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="OnClick" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-            <TextView
-                android:id="@+id/historyDisplay"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Historia"
-                android:textColor="#42e5cf"
-                android:textSize="20dp"
-                android:textStyle="italic" />
-        </ScrollView>
-    </LinearLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
 
-</LinearLayout>
+
+        <TextView
+            android:id="@+id/historyDisplay"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="8dp"
+            android:text="@string/historia"
+            android:textColor="#42e5cf"
+            android:textSize="20sp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

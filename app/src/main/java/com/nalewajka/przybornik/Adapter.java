@@ -3,7 +3,6 @@ package com.nalewajka.przybornik;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,12 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
-    private ArrayList<Note> notes;
+    private ArrayList<Notatka> notes;
     private View.OnClickListener mOnItemClickListener;
-
-    public Adapter(ArrayList<Note> myDataset) {
-        this.notes = myDataset;
-    }
 
     @NonNull
     @Override
@@ -37,8 +32,9 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
         return notes.size();
     }
 
-    public void setData(ArrayList<Note> newNotes){
+    public void setData(ArrayList<Notatka> newNotes){
         this.notes = newNotes;
+        notifyDataSetChanged();
     }
 
     public void setOnItemClickListener(View.OnClickListener itemClickListener) {

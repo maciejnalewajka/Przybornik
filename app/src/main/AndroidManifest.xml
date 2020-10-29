@@ -25,6 +25,8 @@
             android:label=" " />
         <activity android:name="com.nalewajka.przybornik.Notatnik"
             android:label=" "/>
+        <activity android:name="com.nalewajka.przybornik.NowaNotatka"
+            android:label=" "/>
         <activity android:name="com.nalewajka.przybornik.Konwerter"
             android:label=" "/>
 

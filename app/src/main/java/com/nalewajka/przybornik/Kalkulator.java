@@ -2,6 +2,7 @@ package com.nalewajka.przybornik;
 /*
 Kalkulator.java, PostFixCalculator.java, PostFixConverter.java
 created by Oskar Kufel
+edited by Maciej Nalewajka
 */
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,21 +12,16 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.nalewajka.przybornik.PostFixKalkulator;
-import com.nalewajka.przybornik.PostFixKonwerter;
-import com.nalewajka.przybornik.R;
-
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
 public class Kalkulator extends AppCompatActivity {
-    TextView notatko, hDisplay;
-    Button hh;
-    boolean flagHistory = false;
+    TextView wynik, textViewHistory;
+    Button toggle;
+    boolean isHistoryActive = false;
 
     StringBuilder sb = new StringBuilder();
-    ArrayList<String> history = new ArrayList<String>();
+    ArrayList<String> history = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,104 +30,74 @@ public class Kalkulator extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_kalkulator);
 
-        notatko = (TextView) findViewById(R.id.resCalc);
-        hh = (Button) findViewById(R.id.toggle);
-        hDisplay = (TextView) findViewById(R.id.historyDisplay);
-        hh.setBackgroundColor(Color.BLUE);
+        wynik = (TextView) findViewById(R.id.wynik);
+        toggle = (Button) findViewById(R.id.toggle);
+        textViewHistory = (TextView) findViewById(R.id.historyDisplay);
+        toggle.setTextColor(Color.BLUE);
     }
 
-    public void displayHistory(String texto) {
-        if (flagHistory) {
-            history.add(texto);
-            hDisplay.setText(hDisplay.getText().toString()+"\n"+texto);
+    private void displayHistory(String text) {
+        if (isHistoryActive) {
+            history.add(text);
+            String show = textViewHistory.getText().toString() + "\n" + text;
+            textViewHistory.setText(show);
         }
     }
 
-    public void pi(View view) {
-        notatko.setText(notatko.getText()+Double.toString(Math.PI));
-        sb.append(Double.toString(Math.PI));
-    }
-
-    public void resultOnScreen(View view) {
+    private void result() {
         if(sb.length()>0) try {
             PostFixKonwerter pc = new PostFixKonwerter(sb.toString());
             PostFixKalkulator calc = new PostFixKalkulator(pc.getPostfixAsList());
-            notatko.setText(calc.result().toString());
+            wynik.setText(String.valueOf(calc.result().floatValue()));
             displayHistory(calc.result().toString());
             sb.delete(0, sb.length());
             sb.append(calc.result());}
-        catch (IllegalStateException e) {
-            notatko.setText("zle dane");}
-        catch (NumberFormatException l) {
-            notatko.setText("zle dane");}
-        catch (NoSuchElementException o) {notatko.setText("zle dane");}
-        else notatko.setText("");
-
-
+        catch (IllegalStateException | NumberFormatException | NoSuchElementException e) {
+            wynik.setText(R.string.zla_wartosc);}
+        else wynik.setText("");
     }
 
-    public void delate(View view) {
-        if (notatko.getTextSize() > 0) {
-            if(sb.length()>0){
-                sb.delete(sb.length() - 1, sb.length());
-                notatko.setText(sb.toString());}
-        }
-        else notatko.setText("");
-    }
-
-    public void log(View view) {
-        if(!flagHistory){
-            hh.setBackgroundColor(Color.RED);
-            flagHistory=true;
-        }
-        else{
-            hh.setBackgroundColor(Color.BLUE);
-            flagHistory=false;
-        }
-    }
-
-    public void ClearScreen(View view) {
-        sb.delete(0, sb.length());
-        notatko.setText("");
-        history.clear();
-        hDisplay.setText("History:");
-    }
-
-    public void wpiszLiczbe(String liczba) {
-        if (liczba.equals("sin")) {
-            sb.append("s");
-            notatko.setText(notatko.getText() + "sin");
-        }
-        else if (liczba.equals("cos")) {
-            sb.append("c");
-            notatko.setText(notatko.getText() + "cos");
-        }
-        else if (liczba.equals("tan")) {
-            sb.append("t");
-            notatko.setText(notatko.getText() + "tan");
-        }
-        else if (liczba.equals("log")) {
-            sb.append("l");
-            notatko.setText(notatko.getText() + "log");
-        }
-        else if (liczba.equals("sqrt")) {
-            sb.append("q");
-            notatko.setText(notatko.getText() + "sqrt");
-            displayHistory(notatko.getText() + "sqrt");
-        }
-        else if (liczba.equals("+") || liczba.equals("-") || liczba.equals("*") || liczba.equals("/")){
-            sb.append(liczba);
-            notatko.setText(notatko.getText() + liczba);
-            displayHistory(notatko.getText().toString() );
-        }
-        else {
-            sb.append(liczba);
-            notatko.setText(notatko.getText() +liczba );
+    private void wpiszLiczbe(String liczba) {
+        switch (liczba) {
+            case "sin":
+                sb.append("s");
+                wynik.setText(String.format("%ssin", wynik.getText()));
+                break;
+            case "cos":
+                sb.append("c");
+                wynik.setText(String.format("%scos", wynik.getText()));
+                break;
+            case "tan":
+                sb.append("t");
+                wynik.setText(String.format("%stan", wynik.getText()));
+                break;
+            case "log":
+                sb.append("l");
+                wynik.setText(String.format("%slog", wynik.getText()));
+                break;
+            case "sqrt":
+                sb.append("q");
+                wynik.setText(String.format("%ssqrt", wynik.getText()));
+                displayHistory(wynik.getText() + "sqrt");
+                break;
+            case "+":
+            case "-":
+            case "*":
+            case "/":
+                sb.append(liczba);
+                wynik.setText(String.format("%s%s", wynik.getText(), liczba));
+                displayHistory(wynik.getText().toString());
+                break;
+            default:
+                sb.append(liczba);
+                wynik.setText(String.format("%s%s", wynik.getText(), liczba));
+                break;
         }
     }
 
-    public void clickOn9(View view) {
+    public void click(View view){onClick(view);}
 
+    private void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn0:
                 wpiszLiczbe("0");
@@ -211,15 +177,47 @@ public class Kalkulator extends AppCompatActivity {
             case R.id.square:
                 wpiszLiczbe("^");
                 break;
-        }
-    }
+            case R.id.dot:
+                wpiszLiczbe(".");
+                if (sb.length()>1){
+                    if ( Character.toString(sb.charAt(sb.length()-2)).equals(".") && Character.toString(sb.charAt(sb.length()-1)).equals(".") ) {
+                        wynik.setText(".");
+                    }
+                }
+                break;
+            case R.id.clear:
+                sb.delete(0, sb.length());
+                wynik.setText("");
+                history.clear();
+                textViewHistory.setText(R.string.historia);
+                break;
+            case R.id.backSpace:
+                if (wynik.getTextSize() > 0) {
+                    if(sb.length()>0){
+                        sb.delete(sb.length() - 1, sb.length());
+                        wynik.setText(sb.toString());}
+                }
+                else wynik.setText("");
+                break;
+            case R.id.toggle:
+                if(!isHistoryActive){
+                    toggle.setTextColor(Color.RED);
+                    isHistoryActive = true;
+                }
+                else{
+                    toggle.setTextColor(Color.BLUE);
+                    isHistoryActive = false;
+                }
+                break;
+            case R.id.pi:
+                String show = wynik.getText() + Double.toString(Math.PI);
+                wynik.setText(show);
+                sb.append(Math.PI);
+                break;
+            case R.id.equal:
+                result();
+                break;
 
-    public void addDot(View view) {
-        wpiszLiczbe(".");
-        if (sb.length()>1){
-            if ( Character.toString(sb.charAt(sb.length()-2)).equals(".") &&  Character.toString(sb.charAt(sb.length()-1)).equals(".") ) {
-                notatko.setText(".");
-            }
         }
     }
 }

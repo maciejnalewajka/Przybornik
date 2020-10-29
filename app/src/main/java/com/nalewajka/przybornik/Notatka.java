@@ -6,7 +6,7 @@ import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 import io.realm.annotations.Required;
 
-public class Note extends RealmObject {
+public class Notatka extends RealmObject {
 
     @PrimaryKey
     @Required
@@ -16,13 +16,13 @@ public class Note extends RealmObject {
     @Required
     private Date date;
 
-    public Note(String text, Date date) {
+    public Notatka(String text, Date date) {
         this.id = date.getTime();
         this.text = text;
         this.date = date;
     }
 
-    public Note() {
+    public Notatka() {
     }
 
     public String getText() {
