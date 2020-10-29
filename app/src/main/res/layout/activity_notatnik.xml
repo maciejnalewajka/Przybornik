@@ -1,133 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:baselineAligned="false"
-    android:orientation="vertical"
+    android:background="@color/black"
+    android:padding="4dp"
     tools:context="com.nalewajka.przybornik.Notatnik">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/text_n1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#0f3a68"
-            android:fontFamily="sans-serif-smallcaps"
-            android:gravity="center"
-            android:text="NOTATNIK"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            android:textColor="#f086b1b5"
-            android:textScaleX="1.5"
-            android:textSize="24sp"
-            android:typeface="serif" />
-
-        <TextView
-            android:id="@+id/text_n"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#0f3a68"
-            android:fontFamily="sans-serif-smallcaps"
-            android:gravity="center"
-            android:text="ZAPISANE"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            android:textColor="#f086b1b5"
-            android:textScaleX="1.5"
-            android:textSize="24sp"
-            android:typeface="serif" />
-    </LinearLayout>
-
-    <LinearLayout
+    <MultiAutoCompleteTextView
+        android:id="@+id/editText"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
+        android:autofillHints=""
+        android:background="@drawable/options"
+        android:cursorVisible="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="top|start"
+        android:hint="@string/dotdotdot"
+        android:inputType="textMultiLine"
+        android:padding="8dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:shadowColor="@color/black"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="1"
+        android:text=""
+        android:textColor="@color/newHint"
+        android:textColorHint="@color/newHint"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/scroll2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:id="@+id/linear3"
+    <ImageButton
+        android:id="@+id/button_save"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_ok"
+        android:contentDescription="@string/image"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/editText"
+        app:layout_constraintEnd_toEndOf="@+id/editText"
+        app:srcCompat="@drawable/ok" />
+
+    <ScrollView
+        android:id="@+id/scroll2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/notes_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            android:padding="8dp" />
+
+    </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/optionBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#572E3351"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/options"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:background="@drawable/options"
+        android:padding="15dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/copy"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_height="0dp"
+            android:background="@drawable/options_button"
+            android:shadowColor="@color/black"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="1"
+            android:text="@string/kopiuj"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/edit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-
-            <ScrollView
-                android:id="@+id/scroll_n1"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="5"
-                android:background="#ae17476f">
-
-                <EditText
-                    android:id="@+id/edit_n1"
-                    style="@android:style/Widget.Holo.AutoCompleteTextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="Notatka"
-                    android:singleLine="false" />
-
-            </ScrollView>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="#ae17476f">
-
-                <ImageButton
-                    android:id="@+id/button_n1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@android:drawable/picture_frame"
-                    android:backgroundTint="#eac30101"
-                    android:backgroundTintMode="src_atop"
-                    android:onClick="wyczysc"
-                    app:srcCompat="@android:drawable/ic_menu_delete" />
-
-                <ImageButton
-                    android:id="@+id/button_n2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@android:drawable/picture_frame"
-                    android:backgroundTint="#eac30101"
-                    android:backgroundTintMode="src_atop"
-                    android:onClick="zapisz"
-                    app:srcCompat="@android:drawable/ic_menu_save" />
-
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linear4"
+        <Button
+            android:id="@+id/edit"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/options_button"
+            android:shadowColor="@color/black"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="1"
+            android:text="@string/edytuj"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/delete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/copy" />
 
-            <ListView
-                android:id="@+id/listView1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:backgroundTintMode="src_in">
+        <Button
+            android:id="@+id/delete"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/options_button"
+            android:shadowColor="@color/black"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="1"
+            android:text="@string/usu"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit" />
 
-            </ListView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

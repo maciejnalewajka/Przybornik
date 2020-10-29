@@ -12,6 +12,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.nalewajka.przybornik.PostFixKalkulator;
+import com.nalewajka.przybornik.PostFixKonwerter;
+import com.nalewajka.przybornik.R;
+
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 

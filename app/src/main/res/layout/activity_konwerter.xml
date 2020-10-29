@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    android:visibility="visible"
     tools:context="com.nalewajka.przybornik.Konwerter">
 
 
@@ -52,7 +51,7 @@
         android:text="@string/z"
         android:textAlignment="center"
         android:textColor="@color/color1"
-        android:textSize="24sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         android:typeface="sans"
         app:layout_constraintBottom_toTopOf="@+id/appName"
@@ -63,7 +62,7 @@
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="0dp"
+        android:layout_width="100dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/copy"
@@ -72,12 +71,13 @@
         android:hint="@string/podaj_liczbe"
         android:importantForAutofill="no"
         android:inputType="number"
-        android:textColor="@color/color2"
-        android:textSize="24sp"
-        android:textColorHint="@color/color3"
+        android:maxWidth="120dp"
         android:shadowColor="@color/black"
         android:shadowDx="2"
         android:shadowDy="2"
+        android:textColor="@color/color2"
+        android:textColorHint="@color/color3"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/appName"
         app:layout_constraintEnd_toStartOf="@+id/buttonWybierz2"
         app:layout_constraintHorizontal_bias="0.5"
@@ -100,7 +100,7 @@
         android:text="@string/naco"
         android:textAlignment="center"
         android:textColor="@color/color1"
-        android:textSize="24sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         android:typeface="sans"
         app:layout_constraintBottom_toBottomOf="@+id/editText"
@@ -146,11 +146,12 @@
 
     <ImageButton
         android:id="@+id/buttonPaste"
-        android:layout_width="0dp"
+        android:layout_width="100dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/copy"
         android:contentDescription="@string/image"
+        android:maxWidth="120dp"
         android:tint="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/editText"
         app:layout_constraintEnd_toEndOf="@+id/editText"

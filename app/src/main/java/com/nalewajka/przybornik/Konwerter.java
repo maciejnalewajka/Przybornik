@@ -15,6 +15,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.nalewajka.przybornik.R;
+import com.nalewajka.przybornik.Wartosci;
+
 import java.util.Objects;
 
 public class Konwerter extends AppCompatActivity {

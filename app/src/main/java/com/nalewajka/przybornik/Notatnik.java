@@ -1,58 +1,38 @@
 package com.nalewajka.przybornik;
 
-import android.Manifest;
-import android.app.AlertDialog;
+import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
-import android.content.DialogInterface;
-import android.content.pm.PackageManager;
-import android.graphics.Color;
-import android.os.Environment;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
+import android.widget.ImageButton;
 import android.widget.Toast;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Random;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.Date;
+import java.util.List;
 
-public class Notatnik extends AppCompatActivity implements AdapterView.OnItemClickListener {
-    public int colorAsInt;
-    private final int MEMORY_ACCESS=5 ;
-    private String path = Environment.getExternalStorageDirectory().toString();
-    private ListView listView;
+import io.realm.Realm;
+import io.realm.RealmResults;
+
+public class Notatnik extends AppCompatActivity {
+
+    private Realm realm;
     private EditText editText;
-    private ArrayList<String> data;
-    private ArrayList<String> pliki;
-    private ArrayAdapter<String> adapter;
-    private Toast toast1;
-    public File file;
-    private String text;
-    private FileReader fr = null;;
-
-    // Uprawnienia
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode)
-        {
-            case MEMORY_ACCESS:
-                if(grantResults.length>0&&grantResults[0]== PackageManager.PERMISSION_GRANTED){}
-                else
-                {Toast.makeText(getApplicationContext(), "Zgoda wymagana", Toast.LENGTH_LONG ).show();}
-        }}
+    private Button edit, delete, copy;
+    private ConstraintLayout optionB, option;
+    private ArrayList<Note> data = new ArrayList<>();
+    Adapter adapter;
+    Note optionNote;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,159 +40,139 @@ public class Notatnik extends AppCompatActivity implements AdapterView.OnItemCli
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_notatnik);
-        if(ActivityCompat.shouldShowRequestPermissionRationale(Notatnik.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)){}
-        else{ActivityCompat.requestPermissions(Notatnik.this, new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE}, MEMORY_ACCESS);}
+        Realm.init(this);
+        realm = Realm.getDefaultInstance();
 
-        ColorDiagram();
+        editText = findViewById(R.id.editText);
+        edit = findViewById(R.id.edit);
+        delete = findViewById(R.id.delete);
+        copy = findViewById(R.id.copy);
+        optionB = findViewById(R.id.optionBackground);
+        option = findViewById(R.id.options);
+        ImageButton saveButton = findViewById(R.id.button_save);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.notes_list);
 
-        listView = (ListView) findViewById(R.id.listView1);
-        editText = (EditText) findViewById(R.id.edit_n1);
-        data = new ArrayList<String>();
-        pliki = new ArrayList<String>();
 
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(this);
-    }
+        adapter = new Adapter(getData());
+        adapter.setOnItemClickListener(onItemClickListener);
+        LinearLayoutManager  layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(adapter);
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        zapelnij();
+        saveButton.setOnClickListener(v -> save(editText.getText().toString().trim(), new Date()));
+
+        optionB.setOnClickListener(v -> changeVisibility());
+
+        edit.setOnClickListener(v -> edit(optionNote));
+
+        delete.setOnClickListener(v -> delete(optionNote));
+
+        copy.setOnClickListener(v -> copy(optionNote));
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (data.isEmpty()) {poka2();}
     }
 
-    public void wyczysc(View view) {
-        EditText edit_n1 = (EditText) findViewById(R.id.edit_n1);
-        edit_n1.setText("");
-    }                           // Przycisk wyczyść
-
-    public void zapisz(View view) throws IOException {
-        toast1 = Toast.makeText(this, "Zapisano", Toast.LENGTH_SHORT);
-
-        text = String.valueOf(editText.getText());
-        data.add(text);
-        adapter.notifyDataSetChanged();
-        editText.setText("");
-        toast1.show();
-        zapisz2();
-    }           // Przycisk zapisz
-
-    public void ColorDiagram(){
-        String[] mColors = {
-                "#39add1", // light blue
-                "#3079ab", // dark blue
-                "#c25975", // mauve
-                "#e15258", // red
-                "#f9845b", // orange
-                "#838cc7", // lavender
-                "#7d669e", // purple
-                "#53bbb4", // aqua
-                "#51b46d", // green
-                "#e0ab18", // mustard
-                "#637a91", // dark gray
-                "#f092b0", // pink
-                "#b7c0c7"};  // light gray
-
-        Random randomGenerator = new Random();
-        int randomNumber = randomGenerator.nextInt(mColors.length);
-        String color = mColors[randomNumber];
-        colorAsInt = Color.parseColor(color);
-    }                               // Losowy kolor
-
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close();
+    }
 
-        final String[] kategorie = {"Kopiuj", "Usuń", "Edytuj"};
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setItems(kategorie, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int item) {
-                if(item == 0){
-                    ClipboardManager kop = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-                    ClipData kop2 = ClipData.newPlainText("Kopia", data.get(position));
-                    kop.setPrimaryClip(kop2);
+    private void save(String text, Date date) {
+        Note note = new Note(text, date);
+        realm.beginTransaction();
+        realm.copyToRealm(note);
+        realm.commitTransaction();
+        editText.setText("");
+        hideKeyboard();
+        adapter.setData(getData());
+        adapter.notifyDataSetChanged();
+    }
+
+    private void delete(Note note) {
+        realm.beginTransaction();
+        RealmResults<Note> rows = realm.where(Note.class).equalTo("id", note.getId()).findAll();
+        rows.deleteAllFromRealm();
+        realm.commitTransaction();
+        adapter.setData(getData());
+        adapter.notifyDataSetChanged();
+        changeVisibility();
+    }
+
+    private void edit(Note note) {
+        editText.setText(note.getText());
+        delete(note);
+    }
+
+    private void copy(Note note){
+        ClipboardManager copy = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        ClipData copy2 = ClipData.newPlainText("Kopia", note.getText());
+        if (copy != null) {
+            copy.setPrimaryClip(copy2);
+            Toast.makeText(this, "Skopiowano!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private ArrayList<Note> getData(){
+        RealmResults<Note> realmResults = realm.where(Note.class).findAll();
+        ArrayList<Note> newNotes = new ArrayList<>(realm.copyFromRealm(realmResults));
+        return sort(newNotes);
+    }
+
+    private ArrayList<Note> sort(List<Note> notes){
+        ArrayList<Note> newNotes = new ArrayList<>();
+        while (notes.size() > 0){
+            Note noteMin = notes.get(0);
+            for(Note item : notes){
+                if (item.getId() > noteMin.getId()){
+                    noteMin = item;
                 }
-                else if(item == 1){
-                    File file = new File(pliki.get(position));
-                    file.delete();
-                    pliki.remove(position);
-                    data.remove(position);
-                    adapter.notifyDataSetChanged();
-                    Toast.makeText(getApplicationContext(), "Usunięto", Toast.LENGTH_SHORT).show();
-
-                }
-                else{
-                    File file = new File(pliki.get(position));
-                    file.delete();
-                    pliki.remove(position);
-                    editText.setText(data.get(position));
-                    data.remove(position);
-                    adapter.notifyDataSetChanged();
-                }
             }
-        }).getContext().setTheme(R.style.Theme_AppCompat_DayNight_Dialog_Alert);
-        builder.create();
-        builder.show();
+            newNotes.add(noteMin);
+            notes.remove(noteMin);
+        }
+        data = newNotes;
+        return newNotes;
+    }
 
-    }           // Przyciski kopiuj, usuń, edytuj wywoływane na notatkach
+    private View.OnClickListener onItemClickListener = view -> {
+        RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
+        int position = viewHolder.getAdapterPosition();
+        changeVisibility();
+        hideKeyboard();
+        optionNote = data.get(position);
+    };
 
-    public void zapisz2() throws FileNotFoundException {
-        String nazwa = null;
-        int i = 0;
-        while (true){
-            nazwa = path + "//"+String.valueOf(i)+".txt";
-            File file = new File(nazwa);
-            pliki.add( nazwa);
-            if(file.exists()){i++;}
-            else{
-                PrintWriter zapis = new PrintWriter(nazwa);
-                zapis.print(text);
-                zapis.close();
-                break;
-            }
-        }i=0;
-    }       // Zapisuje notatki do tablicy i plików oraz nazwe pliku do tablicy   -- wykonanie zapisz()
+    private void changeVisibility(){
+        if(edit.getVisibility() == View.VISIBLE){
+            optionB.setVisibility(View.INVISIBLE);
+            option.setVisibility(View.INVISIBLE);
+            edit.setVisibility(View.INVISIBLE);
+            delete.setVisibility(View.INVISIBLE);
+            copy.setVisibility(View.INVISIBLE);
+        }
+        else{
+            optionB.setVisibility(View.VISIBLE);
+            option.setVisibility(View.VISIBLE);
+            edit.setVisibility(View.VISIBLE);
+            delete.setVisibility(View.VISIBLE);
+            copy.setVisibility(View.VISIBLE);
+        }
+    }
 
-    public void poka2(){
-        String name = null;
-        String notka = "";
-        String s;
-        int i = 0;
-        while (true) {
-            try {
-                name = path + "//"+String.valueOf(i)+".txt";
-                fr = new FileReader(name);
-            } catch (FileNotFoundException e) {if(i>100){break;}
-                i++; continue;
-            }
-            Scanner plik = new Scanner(fr);
-            while (plik.hasNext()) {
-                s = plik.next();
-                notka = notka + s;
-            }
-            plik.close();
-            i++;
-            data.add(notka);
-            notka = "";
-        }i=0;
-    }                   // Przesyła notatki z plików do tablicy    -- wykonanie onResume()
-
-    public void zapelnij(){
-        String nazwa = null;
-        pliki.clear();
-        int i = 0;
-        while(true) {
-            nazwa = path + "//"+String.valueOf(i)+".txt";
-            try {fr = new FileReader(nazwa);}
-            catch (FileNotFoundException e) {if(i>100){break;} i++; continue;}
-            pliki.add(nazwa);
-            i++;
-        }i=0;
-    }               // Zapełnia tablice nazwami plików   -- wykonanie onCreate()
+    private void hideKeyboard() {
+        InputMethodManager imm = (InputMethodManager) this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        View view = this.getCurrentFocus();
+        if (view == null) {
+            view = new View(this);
+        }
+        if (imm != null) {
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
 }
