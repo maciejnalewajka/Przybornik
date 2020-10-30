@@ -1,20 +1,23 @@
 package com.nalewajka.przybornik;
-
+/*
+Kalkulator.java, PostFixCalculator.java, PostFixConverter.java
+created by Oskar Kufel
+edited by Maciej Nalewajka
+*/
 import java.math.BigDecimal;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.List;
 
-public class PostFixKalkulator {
+public class Infix {
     private List<String> expression;
     private Deque<Double> stack = new ArrayDeque<>();
 
-    public PostFixKalkulator(List<String> postfix) {
+    public Infix(List<String> postfix) {
         expression = postfix;
     }
 
     public BigDecimal result() {
-        System.out.println(expression);
 
         for (int i = 0; i != expression.size(); ++i) {
             double tempResult =0;
@@ -23,7 +26,12 @@ public class PostFixKalkulator {
                 stack.addLast(Double.parseDouble(expression.get(i)));
             } else {
                 double temp;
-                if(stack.size()>1 || expression.get(i).equals("^")  ||  expression.get(i).equals("c") || expression.get(i).equals("t") || expression.get(i).equals("s") || expression.get(i).equals("q")  || expression.get(i).equals("f") || expression.get(i).equals("l") || expression.get(i).equals("%")) {
+                if(stack.size()>1 || expression.get(i).equals("^")  ||
+                        expression.get(i).equals("c") || expression.get(i).equals("t") ||
+                        expression.get(i).equals("s") || expression.get(i).equals("q")  ||
+                        expression.get(i).equals("f") || expression.get(i).equals("l") ||
+                        expression.get(i).equals("%")) {
+
                     switch (expression.get(i)) {
                         case "+":
                             temp = stack.removeLast();

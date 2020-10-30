@@ -22,12 +22,16 @@
             </intent-filter>
         </activity>
         <activity android:name="com.nalewajka.przybornik.Kalkulator"
+            android:screenOrientation="portrait"
             android:label=" " />
         <activity android:name="com.nalewajka.przybornik.Notatnik"
+            android:screenOrientation="portrait"
             android:label=" "/>
         <activity android:name="com.nalewajka.przybornik.NowaNotatka"
+            android:screenOrientation="portrait"
             android:label=" "/>
         <activity android:name="com.nalewajka.przybornik.Konwerter"
+            android:screenOrientation="portrait"
             android:label=" "/>
 
     </application>

@@ -4,24 +4,17 @@ Kalkulator.java, PostFixCalculator.java, PostFixConverter.java
 created by Oskar Kufel
 edited by Maciej Nalewajka
 */
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
 public class Kalkulator extends AppCompatActivity {
-    TextView wynik, textViewHistory;
-    Button toggle;
-    boolean isHistoryActive = false;
-
+    TextView wynik;
     StringBuilder sb = new StringBuilder();
-    ArrayList<String> history = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,28 +23,16 @@ public class Kalkulator extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_kalkulator);
 
-        wynik = (TextView) findViewById(R.id.wynik);
-        toggle = (Button) findViewById(R.id.toggle);
-        textViewHistory = (TextView) findViewById(R.id.historyDisplay);
-        toggle.setTextColor(Color.BLUE);
-    }
-
-    private void displayHistory(String text) {
-        if (isHistoryActive) {
-            history.add(text);
-            String show = textViewHistory.getText().toString() + "\n" + text;
-            textViewHistory.setText(show);
-        }
+        wynik = findViewById(R.id.wynik);
     }
 
     private void result() {
         if(sb.length()>0) try {
-            PostFixKonwerter pc = new PostFixKonwerter(sb.toString());
-            PostFixKalkulator calc = new PostFixKalkulator(pc.getPostfixAsList());
+            Postfix pc = new Postfix(sb.toString());
+            Infix calc = new Infix(pc.getPostfixAsList());
             wynik.setText(String.valueOf(calc.result().floatValue()));
-            displayHistory(calc.result().toString());
             sb.delete(0, sb.length());
-            sb.append(calc.result());}
+            sb.append(calc.result().floatValue());}
         catch (IllegalStateException | NumberFormatException | NoSuchElementException e) {
             wynik.setText(R.string.zla_wartosc);}
         else wynik.setText("");
@@ -75,19 +56,10 @@ public class Kalkulator extends AppCompatActivity {
                 sb.append("l");
                 wynik.setText(String.format("%slog", wynik.getText()));
                 break;
-            case "sqrt":
-                sb.append("q");
-                wynik.setText(String.format("%ssqrt", wynik.getText()));
-                displayHistory(wynik.getText() + "sqrt");
-                break;
             case "+":
             case "-":
             case "*":
             case "/":
-                sb.append(liczba);
-                wynik.setText(String.format("%s%s", wynik.getText(), liczba));
-                displayHistory(wynik.getText().toString());
-                break;
             default:
                 sb.append(liczba);
                 wynik.setText(String.format("%s%s", wynik.getText(), liczba));
@@ -174,9 +146,6 @@ public class Kalkulator extends AppCompatActivity {
             case R.id.factorial:
                 wpiszLiczbe("f");
                 break;
-            case R.id.square:
-                wpiszLiczbe("^");
-                break;
             case R.id.dot:
                 wpiszLiczbe(".");
                 if (sb.length()>1){
@@ -188,26 +157,13 @@ public class Kalkulator extends AppCompatActivity {
             case R.id.clear:
                 sb.delete(0, sb.length());
                 wynik.setText("");
-                history.clear();
-                textViewHistory.setText(R.string.historia);
                 break;
             case R.id.backSpace:
-                if (wynik.getTextSize() > 0) {
-                    if(sb.length()>0){
-                        sb.delete(sb.length() - 1, sb.length());
-                        wynik.setText(sb.toString());}
+                if (wynik.getTextSize() > 0 & sb.length() > 0) {
+                    sb.delete(sb.length() - 1, sb.length());
+                    wynik.setText(sb.toString());
                 }
                 else wynik.setText("");
-                break;
-            case R.id.toggle:
-                if(!isHistoryActive){
-                    toggle.setTextColor(Color.RED);
-                    isHistoryActive = true;
-                }
-                else{
-                    toggle.setTextColor(Color.BLUE);
-                    isHistoryActive = false;
-                }
                 break;
             case R.id.pi:
                 String show = wynik.getText() + Double.toString(Math.PI);

@@ -1,16 +1,20 @@
 package com.nalewajka.przybornik;
-
+/*
+Kalkulator.java, PostFixCalculator.java, PostFixConverter.java
+created by Oskar Kufel
+edited by Maciej Nalewajka
+*/
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
-public class PostFixKonwerter {
+public class Postfix {
         private String infix;
         private Deque<Character> stack = new ArrayDeque<>();
         private List<String> postfix = new ArrayList<>();
 
-        public PostFixKonwerter(String expression) {
+        public Postfix(String expression) {
             infix = expression;
             convertExpression();
         }
@@ -20,7 +24,7 @@ public class PostFixKonwerter {
 
             for (int i = 0; i != infix.length(); ++i) {
                 if  (String.valueOf(infix.charAt(0)).equals(".")){
-                    i += 1;
+                    i++;
                     break;
                 }
                 if (Character.isDigit(infix.charAt(i))) {
@@ -49,15 +53,11 @@ public class PostFixKonwerter {
                     }
                     stack.removeLast();
                 } else {
-                    if (stack.getLast().equals('('))
-                        stack.addLast(input);
-                    else {
-                        while (!stack.isEmpty() && !stack.getLast().equals('(') &&
-                                getPrecedence(input) <= getPrecedence(stack.getLast())) {
-                            postfix.add(stack.removeLast().toString());
-                        }
-                        stack.addLast(input);
+                    while (!stack.isEmpty() && !stack.getLast().equals('(') &&
+                            getPrecedence(input) <= getPrecedence(stack.getLast())) {
+                        postfix.add(stack.removeLast().toString());
                     }
+                    stack.addLast(input);
                 }
             }
         }
