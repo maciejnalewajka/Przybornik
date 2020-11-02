@@ -47,7 +47,7 @@ public class Notatnik extends AppCompatActivity {
         optionB = findViewById(R.id.optionBackground);
         option = findViewById(R.id.options);
         deleteAll = findViewById(R.id.deleteAll);
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.notes_list);
+        RecyclerView recyclerView = findViewById(R.id.notes_list);
         ImageButton addNote = findViewById(R.id.button_add_note);
         ImageButton settings = findViewById(R.id.settings);
         adapter = new Adapter();
@@ -138,7 +138,7 @@ public class Notatnik extends AppCompatActivity {
         return newNotes;
     }
 
-    private View.OnClickListener onItemClickListener = view -> {
+    private final View.OnClickListener onItemClickListener = view -> {
         RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
         int position = viewHolder.getAdapterPosition();
         val = 0;

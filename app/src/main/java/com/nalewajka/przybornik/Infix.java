@@ -10,8 +10,8 @@ import java.util.Deque;
 import java.util.List;
 
 public class Infix {
-    private List<String> expression;
-    private Deque<Double> stack = new ArrayDeque<>();
+    private final List<String> expression;
+    private final Deque<Double> stack = new ArrayDeque<>();
 
     public Infix(List<String> postfix) {
         expression = postfix;

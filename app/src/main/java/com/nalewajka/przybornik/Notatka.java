@@ -13,13 +13,10 @@ public class Notatka extends RealmObject {
     private Long id;
     @Required
     private String text;
-    @Required
-    private Date date;
 
     public Notatka(String text, Date date) {
         this.id = date.getTime();
         this.text = text;
-        this.date = date;
     }
 
     public Notatka() {
@@ -29,23 +26,7 @@ public class Notatka extends RealmObject {
         return text;
     }
 
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 }

@@ -29,6 +29,7 @@
     <color name="optionBackgground">#9F908995</color>
 
     <!--    Kalkulator-->
-
+    <color name="color6">#FB8C00</color>
+    <color name="color7">#388E3C</color>
 
 </resources>

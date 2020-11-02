@@ -4,17 +4,22 @@ Kalkulator.java, PostFixCalculator.java, PostFixConverter.java
 created by Oskar Kufel
 edited by Maciej Nalewajka
 */
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 public class Kalkulator extends AppCompatActivity {
     TextView wynik;
-    StringBuilder sb = new StringBuilder();
+    private final StringBuilder sb = new StringBuilder();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +29,8 @@ public class Kalkulator extends AppCompatActivity {
         setContentView(R.layout.activity_kalkulator);
 
         wynik = findViewById(R.id.wynik);
+        ImageView copy = findViewById(R.id.copy);
+        copy.setOnClickListener(v -> copy());
     }
 
     private void result() {
@@ -175,5 +182,12 @@ public class Kalkulator extends AppCompatActivity {
                 break;
 
         }
+    }
+
+    private void copy(){
+        ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        ClipData clipData = ClipData.newPlainText("Kopia", wynik.getText().toString());
+        Objects.requireNonNull(clipboardManager).setPrimaryClip(clipData);
+        Toast.makeText(this, "Skopiowano!", Toast.LENGTH_SHORT).show();
     }
 }

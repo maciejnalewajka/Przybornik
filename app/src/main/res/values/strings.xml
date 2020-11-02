@@ -1,17 +1,15 @@
 <resources>
     <!--    Main-->
     <string name="app_name">przybornik</string>
-    <string name="zapisz">zapisz</string>
     <string name="image">image</string>
-
     <string name="kalkulator">kalkulator</string>
     <string name="konwerter">konwerter</string>
     <string name="notatnik">notatnik</string>
 
     <!--    Konwerter-->
-    <string name="kategoria">kategoria</string>
-    <string name="z">z</string>
-    <string name="naco">na co</string>
+    <string name="kategoria_text">Temperatura</string>
+    <string name="z">Celsjusz</string>
+    <string name="naco">Fahrenheit</string>
     <string name="zla_wartosc">Zła wartość!</string>
     <string name="konwertuj">Konwertuj</string>
     <string name="podaj_liczbe">Podaj liczbę</string>
@@ -20,6 +18,7 @@
     <string name="dotdotdot">…</string>
     <string name="kopiuj">Kopiuj</string>
     <string name="edytuj">Edytuj</string>
+    <string name="zapisz">zapisz</string>
     <string name="usu">Usuń</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="usu_wszystko">Usuń wszystko</string>
@@ -38,18 +37,18 @@
     <string name="_9">9</string>
     <string name="_8">8</string>
     <string name="podziel">/</string>
-    <string name="razy">x</string>
+    <string name="razy">*</string>
     <string name="_7">7</string>
     <string name="nawias_otwarty">(</string>
-    <string name="cos">COS</string>
+    <string name="cos">cos</string>
     <string name="procent">%</string>
     <string name="_0">0</string>
     <string name="nawias_zamkniety">)</string>
     <string name="sin">sin</string>
     <string name="kropka">.</string>
-    <string name="xpown">xpown</string>
+    <string name="xpown">X^Y</string>
     <string name="sqrt">sqrt</string>
-    <string name="pi">PI</string>
+    <string name="pi">pi</string>
     <string name="log">log</string>
     <string name="tan">tan</string>
     <string name="square">square</string>

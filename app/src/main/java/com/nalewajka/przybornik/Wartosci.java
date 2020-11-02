@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Wartosci {
 
     private double liczba;
-    private String wybierz1, wybierz2;
+    private final String wybierz1, wybierz2;
 
     public Wartosci(String wybierz1, String wybierz2, double liczba){
         this.wybierz1 = wybierz1;

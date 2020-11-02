@@ -42,7 +42,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView textViewList;
+        public final TextView textViewList;
 
         public MyViewHolder(View itemView) {
             super(itemView);

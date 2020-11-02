@@ -39,10 +39,24 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+    <ImageButton
+        android:id="@+id/copy"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/background_buttons_kalkulator"
+        android:contentDescription="@string/image"
+        android:tint="@color/buttonsKalkulator"
+        app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
+        app:layout_constraintTop_toTopOf="@+id/constraintLayout"
+        app:srcCompat="?android:attr/actionModeCopyDrawable" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
@@ -333,6 +347,7 @@
                 android:shadowDy="2"
                 android:shadowRadius="1"
                 android:text="@string/razy"
+                android:textAllCaps="false"
                 android:textColor="@color/buttonsKalkulator"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -671,6 +686,7 @@
                 android:shadowDy="2"
                 android:shadowRadius="1"
                 android:text="@string/sin"
+                android:textAllCaps="false"
                 android:textColor="@color/buttonsKalkulator"
                 android:textSize="14sp"
                 android:textStyle="bold"

@@ -11,13 +11,11 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.nalewajka.przybornik.R;
-import com.nalewajka.przybornik.Wartosci;
 
 import java.util.Objects;
 
@@ -36,25 +34,40 @@ public class Konwerter extends AppCompatActivity {
         setContentView(R.layout.activity_konwerter);
 
         editText = findViewById(R.id.editText);
-        textView = findViewById(R.id.appName);
+        textView = findViewById(R.id.wynik);
         buttonKategoria = findViewById(R.id.buttonKategoria);
         buttonWybierz1 = findViewById(R.id.buttonWybierz1);
         buttonWybierz2 = findViewById(R.id.buttonWybierz2);
+        ImageView imageView = findViewById(R.id.imageView2);
+        ImageView imageView2 = findViewById(R.id.imageView);
+        ImageView imageView3 = findViewById(R.id.imageView3);
         Button buttonKonwertuj = findViewById(R.id.buttonKonwertuj);
         ImageButton buttonCopy = findViewById(R.id.buttonCopy);
         ImageButton buttonPaste = findViewById(R.id.buttonPaste);
+        ImageView change = findViewById(R.id.change);
 
         buttonKategoria.setOnClickListener(v -> kategoria());
+        imageView.setOnClickListener(v -> kategoria());
 
         buttonWybierz1.setOnClickListener(v -> wybierz1());
+        imageView2.setOnClickListener(v -> wybierz1());
 
         buttonWybierz2.setOnClickListener(v -> wybierz2());
+        imageView3.setOnClickListener(v -> wybierz2());
 
         buttonKonwertuj.setOnClickListener(v -> konwertuj());
 
         buttonCopy.setOnClickListener(v -> copy());
 
         buttonPaste.setOnClickListener(v -> paste());
+
+        change.setOnClickListener(v -> change());
+    }
+
+    private void change() {
+        String text = buttonWybierz1.getText().toString();
+        buttonWybierz1.setText(buttonWybierz2.getText().toString());
+        buttonWybierz2.setText(text);
     }
 
     private void copy(){
@@ -62,6 +75,7 @@ public class Konwerter extends AppCompatActivity {
         ClipData clipData = ClipData.newPlainText("Kopia", textView.getText().toString());
         Objects.requireNonNull(clipboardManager).setPrimaryClip(clipData);
         Toast.makeText(this, "Skopiowano!", Toast.LENGTH_SHORT).show();
+        hideKeyboard(this);
     }
 
     private void paste(){
@@ -70,86 +84,30 @@ public class Konwerter extends AppCompatActivity {
         ClipData.Item item = clipData != null ? clipData.getItemAt(0) : null;
         String tekst = item != null ? item.getText().toString() : null;
         editText.setText(tekst);
+        hideKeyboard(this);
     }
 
     private void kategoria() {
         final String[] kategorie = {"Temperatura", "Prędkość", "Długość", "Powierzchnia", "Objętość", "Czas", "Masa"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Kategorie");
-        builder.setItems(kategorie, (dialog, item) ->
-                buttonKategoria.setText(kategorie[item])).getContext()
-                .setTheme(R.style.Theme_AppCompat_DayNight_Dialog_Alert);
+        builder.setItems(kategorie, (dialog, which) -> {
+            buttonKategoria.setText(kategorie[which]);
+            buttonWybierz1.setText(nameList(kategorie[which])[0]);
+            buttonWybierz2.setText(nameList(kategorie[which])[1]);
+        });
+        builder.getContext().setTheme(R.style.Theme_AppCompat_DayNight_Dialog_Alert);
         builder.create();
         builder.show();
-        buttonWybierz1.setText(R.string.z);
-        buttonWybierz2.setText(R.string.naco);
         hideKeyboard(this);
     }
 
     public void wybierz1() {
-        switch (buttonKategoria.getText().toString()) {
-            case "Temperatura":
-                String[] temperatury = {"Celsjusz", "Fahrenheit", "Kelvin"};
-                builderWybierz(temperatury, buttonWybierz1);
-                break;
-            case "Prędkość":
-                String[] predkosci = {"m/s", "km/s", "km/h", "kn", "mph", "ips", "Ma", "c", "fps"};
-                builderWybierz(predkosci, buttonWybierz1);
-                break;
-            case "Długość":
-                String[] dlugosc = {"Pikometr", "Nanometr", "Mikrometr", "Milimetr", "Centymetr", "Decymetr", "Metr", "Kilometr", "Mila morska", "Mila", "Jard", "Stopa", "Cal"};
-                builderWybierz(dlugosc, buttonWybierz1);
-                break;
-            case "Powierzchnia":
-                String[] powierzchnia = {"Mikron", "Milimetr", "Centymetr", "Decymetr", "Metr", "Ar", "Hektar", "Kilometr", "Akr", "Mila", "Jard", "Stopa", "Cal"};
-                builderWybierz(powierzchnia, buttonWybierz1);
-                break;
-            case "Objętość":
-                String[] objetosc = {"Mililitr", "Centylitr", "Decylitr", "Litr", "Hektolitr", "Stopa", "Cal", "Jard"};
-                builderWybierz(objetosc, buttonWybierz1);
-                break;
-            case "Czas":
-                String[] czas = {"Pikosekunda", "Mikrosekunda", "Milisekunda", "Sekunda", "Minuta", "Godzina", "Dzień", "Tydzień", "Rok"};
-                builderWybierz(czas, buttonWybierz1);
-                break;
-            case "Masa":
-                String[] masa = {"Mikrogram", "Miligram", "Gram", "Kilogram", "Tona", "Ziarno", "Karat", "Uncja", "Funt", "Kwintal"};
-                builderWybierz(masa, buttonWybierz1);
-                break;
-        }
+        builderWybierz(nameList(buttonKategoria.getText().toString()), buttonWybierz1);
     }
 
     public void wybierz2() {
-        switch (buttonKategoria.getText().toString()) {
-            case "Temperatura":
-                String[] temperatury = {"Celsjusz", "Fahrenheit", "Kelvin"};
-                builderWybierz(temperatury, buttonWybierz2);
-                break;
-            case "Prędkość":
-                String[] predkosci = {"m/s", "km/s", "km/h", "kn", "mph", "ips", "Ma", "c", "fps"};
-                builderWybierz(predkosci, buttonWybierz2);
-                break;
-            case "Długość":
-                String[] dlugosc = {"Pikometr", "Nanometr", "Mikrometr", "Milimetr", "Centymetr", "Decymetr", "Metr", "Kilometr", "Mila morska", "Mila", "Jard", "Stopa", "Cal"};
-                builderWybierz(dlugosc, buttonWybierz2);
-                break;
-            case "Powierzchnia":
-                String[] powierzchnia = {"Mikron", "Milimetr", "Centymetr", "Decymetr", "Metr", "Ar", "Hektar", "Kilometr", "Akr", "Mila", "Jard", "Stopa", "Cal"};
-                builderWybierz(powierzchnia, buttonWybierz2);
-                break;
-            case "Objętość":
-                String[] objetosc = {"Mililitr", "Centylitr", "Decylitr", "Litr", "Hektolitr", "Stopa", "Cal", "Jard"};
-                builderWybierz(objetosc, buttonWybierz2);
-                break;
-            case "Czas":
-                String[] czas = {"Pikosekunda", "Mikrosekunda", "Milisekunda", "Sekunda", "Minuta", "Godzina", "Dzień", "Tydzień", "Rok"};
-                builderWybierz(czas, buttonWybierz2);
-                break;
-            case "Masa":
-                String[] masa = {"Mikrogram", "Miligram", "Gram", "Kilogram", "Tona", "Ziarno", "Karat", "Uncja", "Funt", "Kwintal"};
-                builderWybierz(masa, buttonWybierz2);
-                break;
-        }
+        builderWybierz(nameList(buttonKategoria.getText().toString()), buttonWybierz2);
     }
 
     private void konwertuj() {
@@ -188,6 +146,26 @@ public class Konwerter extends AppCompatActivity {
         }
         catch (IllegalArgumentException e){textView.setText(R.string.zla_wartosc);}
         hideKeyboard(this);
+    }
+
+    private String[] nameList(String kategoria){
+        switch (kategoria) {
+            case "Temperatura":
+                return new String[]{"Celsjusz", "Fahrenheit", "Kelvin"};
+            case "Prędkość":
+                return new String[]{"m/s", "km/s", "km/h", "kn", "mph", "ips", "Ma", "c", "fps"};
+            case "Długość":
+                return new String[]{"Pikometr", "Nanometr", "Mikrometr", "Milimetr", "Centymetr", "Decymetr", "Metr", "Kilometr", "Mila morska", "Mila", "Jard", "Stopa", "Cal"};
+            case "Powierzchnia":
+                return new String[]{"Mikron", "Milimetr", "Centymetr", "Decymetr", "Metr", "Ar", "Hektar", "Kilometr", "Akr", "Mila", "Jard", "Stopa", "Cal"};
+            case "Objętość":
+                return new String[]{"Mililitr", "Centylitr", "Decylitr", "Litr", "Hektolitr", "Stopa", "Cal", "Jard"};
+            case "Czas":
+                return new String[]{"Pikosekunda", "Mikrosekunda", "Milisekunda", "Sekunda", "Minuta", "Godzina", "Dzień", "Tydzień", "Rok"};
+            case "Masa":
+                return new String[]{"Mikrogram", "Miligram", "Gram", "Kilogram", "Tona", "Ziarno", "Karat", "Uncja", "Funt", "Kwintal"};
+        }
+        return new String[]{};
     }
 
     private void builderWybierz(String[] list, Button but){
