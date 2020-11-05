@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Przybornik.iml" filepath="$PROJECT_DIR$/.idea/modules/Przybornik.iml" group="Przybornik" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="Przybornik/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Przybornik.iml" filepath="$PROJECT_DIR$/.idea/modules/Przybornik.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Przybornik.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Przybornik.app.iml" />
     </modules>
   </component>
 </project>
